@@ -81,7 +81,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1735766720843488}
   m_LocalRotation: {x: 0.7071068, y: 0, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: 0, y: -0.151, z: 0.021}
+  m_LocalPosition: {x: -0, y: -0.1821, z: 0.021}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4984596993317142}
@@ -154,7 +154,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   muzzleFlashParticles: {fileID: 198369186261642738}
   muzzlePoint: {fileID: 4952773058507774}
-  bullet: {fileID: 54873608695317514, guid: 8f96238aeb2fc40448a3ce484a8d59f3, type: 2}
+  bulletPrefab: {fileID: 54873608695317514, guid: 8f96238aeb2fc40448a3ce484a8d59f3,
+    type: 2}
   bulletVelocity: 60
   recoilRotationAmount: -2
   recoilPositionAmount: 0.02
@@ -218,14 +219,14 @@ ParticleSystem:
   moveWithTransform: 0
   moveWithCustomTransform: {fileID: 0}
   scalingMode: 1
-  randomSeed: -1846149616
+  randomSeed: 982984117
   InitialModule:
     serializedVersion: 3
     enabled: 1
     startLifetime:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 0.15
+      scalar: 0.1
       minScalar: 5
       maxCurve:
         serializedVersion: 2

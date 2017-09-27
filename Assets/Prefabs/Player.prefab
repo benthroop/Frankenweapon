@@ -219,8 +219,8 @@ MonoBehaviour:
   advancedSettings:
     groundCheckDistance: 0.1
     stickToGroundHelperDistance: 0.6
-    slowDownRate: 20
-    airControl: 0
+    slowDownRate: 30
+    airControl: 1
     shellOffset: 0
 --- !u!114 &114591125678943358
 MonoBehaviour:

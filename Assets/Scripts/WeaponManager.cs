@@ -15,6 +15,13 @@ public class WeaponManager : MonoBehaviour
 		{
 			SetWeaponToIndex(0);
 		}
+		else
+		{
+			currentWeapon.transform.parent = registrationPoint;
+			currentWeapon.transform.localPosition = Vector3.zero;
+			currentWeapon.transform.localRotation = Quaternion.identity;
+			currentWeapon.transform.localScale = Vector3.one;
+		}
 	}
 
     public void Update()

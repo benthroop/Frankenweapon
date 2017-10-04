@@ -9,6 +9,11 @@ public class Weapon : MonoBehaviour
 	 * of specific guns that inherit from Weapon, like ExampleGun.cs. Think of this as a bunch of buttons
 	 * and WeaponManager just pushes them.*/
 
+	public virtual Camera playerCamera
+	{
+		get; set;
+	}
+
     public virtual void PrimaryFireStart()
     {
         Debug.Log("WEAPON CLASS: PRIMARY FIRE START!");

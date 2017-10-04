@@ -8,6 +8,7 @@ public class WeaponManager : MonoBehaviour
     public List<Weapon> weaponList;
     public Weapon currentWeapon;
 	public Transform registrationPoint;
+	private Camera myCamera;
 
 	public void Start()
 	{
@@ -22,6 +23,12 @@ public class WeaponManager : MonoBehaviour
 			currentWeapon.transform.localRotation = Quaternion.identity;
 			currentWeapon.transform.localScale = Vector3.one;
 		}
+
+		myCamera = GetComponentInChildren<Camera>();
+		if (myCamera == null)
+		{
+			Debug.LogError("WeaponManager couldn't find its camera!");
+		}
 	}
 
     public void Update()
@@ -35,6 +42,16 @@ public class WeaponManager : MonoBehaviour
         {
             currentWeapon.PrimaryFireEnd();
         }
+
+		if (CrossPlatformInputManager.GetButtonDown("Fire2"))
+		{
+			currentWeapon.SecondaryFireStart();
+		}
+
+		if (CrossPlatformInputManager.GetButtonUp("Fire2"))
+		{
+			currentWeapon.SecondaryFireEnd();
+		}
 
 		if (Input.GetKeyDown(KeyCode.R))
 		{
@@ -65,6 +82,11 @@ public class WeaponManager : MonoBehaviour
 		newWeaponGo.transform.localRotation = Quaternion.identity;
 		newWeaponGo.transform.localScale = Vector3.one;
 		currentWeapon = newWeaponGo.GetComponent<Weapon>();
+
+		if (myCamera != null)
+		{
+			currentWeapon.playerCamera = myCamera;
+		}
 	}
 
 	public void NextWeapon()

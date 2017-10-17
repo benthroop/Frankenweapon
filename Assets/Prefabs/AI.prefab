@@ -38,6 +38,7 @@ GameObject:
   - component: {fileID: 136612660925656060}
   - component: {fileID: 195825503204441080}
   - component: {fileID: 114221553310947282}
+  - component: {fileID: 114916658062301944}
   m_Layer: 0
   m_Name: AI
   m_TagString: Untagged
@@ -240,6 +241,29 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   target: {fileID: 0}
   head: {fileID: 4491189425702482}
+--- !u!114 &114916658062301944
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1361716907964446}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 28ba0dbe757243a4495b119e472d0299, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  currentHP: 100
+  maxHP: 100
+  OnTakeDamage:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine, Version=0.0.0.0, Culture=neutral,
+      PublicKeyToken=null
+  OnDie:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine, Version=0.0.0.0, Culture=neutral,
+      PublicKeyToken=null
 --- !u!136 &136612660925656060
 CapsuleCollider:
   m_ObjectHideFlags: 1

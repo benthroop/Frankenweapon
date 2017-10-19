@@ -11,6 +11,8 @@ public class AIController : MonoBehaviour
 	private void Start()
 	{
 		// get the components on the object we need ( should not be null due to require component so no need to check )
+
+		//testing
 		agent = GetComponentInChildren<UnityEngine.AI.NavMeshAgent>();
 		agent.updateRotation = false;
 		agent.updatePosition = true;

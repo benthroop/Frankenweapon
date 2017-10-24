@@ -1,10 +1,12 @@
 ﻿using System;
 using UnityEngine;
 using UnityStandardAssets.CrossPlatformInput;
+using InControl;
 
 
 [RequireComponent(typeof(Rigidbody))]
 [RequireComponent(typeof(CapsuleCollider))]
+[RequireComponent(typeof(WeaponManager))]
 public class FWPlayerController : MonoBehaviour
 {
 	[Serializable]
@@ -19,10 +21,7 @@ public class FWPlayerController : MonoBehaviour
 		public AnimationCurve SlopeCurveModifier = new AnimationCurve(new Keyframe(-90.0f, 1.0f), new Keyframe(0.0f, 1.0f), new Keyframe(90.0f, 0.0f));
 		[HideInInspector]
 		public float CurrentTargetSpeed = 8f;
-
-#if !MOBILE_INPUT
 		private bool m_Running;
-#endif
 
 		public void UpdateDesiredTargetSpeed(Vector2 input)
 		{
@@ -43,7 +42,6 @@ public class FWPlayerController : MonoBehaviour
 				//handled last as if strafing and moving forward at the same time forwards speed should take precedence
 				CurrentTargetSpeed = ForwardSpeed;
 			}
-#if !MOBILE_INPUT
 			if (Input.GetKey(RunKey))
 			{
 				CurrentTargetSpeed *= RunMultiplier;
@@ -53,17 +51,19 @@ public class FWPlayerController : MonoBehaviour
 			{
 				m_Running = false;
 			}
-#endif
 		}
 
-#if !MOBILE_INPUT
 		public bool Running
 		{
 			get { return m_Running; }
 		}
-#endif
 	}
 
+	public FWPlayerActionSet actionSet;
+	private WeaponManager weaponManager;
+
+	public enum ControlType { Keyboard, Controller }
+	public ControlType controlType = ControlType.Keyboard;
 
 	[Serializable]
 	public class AdvancedSettings
@@ -109,32 +109,95 @@ public class FWPlayerController : MonoBehaviour
 	{
 		get
 		{
-#if !MOBILE_INPUT
 			return movementSettings.Running;
-#else
-	        return false;
-#endif
 		}
 	}
-
 
 	private void Start()
 	{
 		m_RigidBody = GetComponent<Rigidbody>();
 		m_Capsule = GetComponent<CapsuleCollider>();
 		mouseLook.Init(transform, cam.transform);
-	}
+		weaponManager = GetComponent<WeaponManager>();
 
+		actionSet = new FWPlayerActionSet();
+
+		if (controlType == ControlType.Keyboard)
+		{
+			actionSet.Left.AddDefaultBinding(new KeyBindingSource(Key.A));
+			actionSet.Right.AddDefaultBinding(new KeyBindingSource(Key.D));
+			actionSet.Forward.AddDefaultBinding(new KeyBindingSource(Key.W));
+			actionSet.Backward.AddDefaultBinding(new KeyBindingSource(Key.S));
+			actionSet.Jump.AddDefaultBinding(new KeyBindingSource(Key.Space));
+			actionSet.FirePrimary.AddDefaultBinding(new MouseBindingSource(Mouse.LeftButton));
+			actionSet.FireSecondary.AddDefaultBinding(new MouseBindingSource(Mouse.RightButton));
+			actionSet.Reload.AddDefaultBinding(new KeyBindingSource(Key.R));
+			actionSet.NextWeapon.AddDefaultBinding(new KeyBindingSource(Key.C));
+			actionSet.PreviousWeapon.AddDefaultBinding(new KeyBindingSource(Key.V));
+		}
+		else
+		{
+			actionSet.Left.AddDefaultBinding(InputControlType.LeftStickLeft);
+			actionSet.Right.AddDefaultBinding(InputControlType.LeftStickRight);
+			actionSet.Forward.AddDefaultBinding(InputControlType.LeftStickUp);
+			actionSet.Backward.AddDefaultBinding(InputControlType.LeftStickDown);
+			actionSet.LookLeft.AddDefaultBinding(InputControlType.RightStickLeft);
+			actionSet.LookRight.AddDefaultBinding(InputControlType.RightStickRight);
+			actionSet.LookUp.AddDefaultBinding(InputControlType.RightStickUp);
+			actionSet.LookDown.AddDefaultBinding(InputControlType.RightStickDown);
+			actionSet.Jump.AddDefaultBinding(InputControlType.Action2);
+			actionSet.FirePrimary.AddDefaultBinding(InputControlType.RightTrigger);
+			actionSet.FireSecondary.AddDefaultBinding(InputControlType.RightBumper);
+			actionSet.Reload.AddDefaultBinding(InputControlType.Action3);
+			actionSet.NextWeapon.AddDefaultBinding(InputControlType.DPadUp);
+			actionSet.PreviousWeapon.AddDefaultBinding(InputControlType.DPadDown);
+		}
+	}
 
 	private void Update()
 	{
 		RotateView();
 
-		if (CrossPlatformInputManager.GetButtonDown("Jump") && !m_Jump)
+		if (actionSet.Jump.WasPressed && !m_Jump)
 		{
 			m_Jump = true;
 		}
-	}
+
+        if (actionSet.FirePrimary.WasPressed)
+        {
+            weaponManager.CurrentWeaponPrimaryFireStart();
+        }
+
+        if (actionSet.FirePrimary.WasReleased)
+        {
+            weaponManager.CurrentWeaponPrimaryFireStop();
+        }
+
+		if (actionSet.FireSecondary.WasPressed)
+		{
+			weaponManager.CurrentWeaponSecondaryFireStart();
+		}
+
+		if (actionSet.FireSecondary.WasReleased)
+		{
+			weaponManager.CurrentWeaponSecondaryFireStop();
+		}
+
+		if (actionSet.Reload.WasPressed)
+		{
+			weaponManager.CurrentWeaponReload();
+		}
+
+		if (actionSet.PreviousWeapon.WasPressed)
+		{
+			weaponManager.PreviousWeapon();
+		}
+
+		if (actionSet.NextWeapon.WasPressed)
+		{
+			weaponManager.NextWeapon();
+		}
+  	}
 
 
 	private void FixedUpdate()
@@ -206,12 +269,12 @@ public class FWPlayerController : MonoBehaviour
 
 	private Vector2 GetInput()
 	{
-
 		Vector2 input = new Vector2
 		{
-			x = CrossPlatformInputManager.GetAxis("Horizontal"),
-			y = CrossPlatformInputManager.GetAxis("Vertical")
+			x = actionSet.MoveHorizontal.Value,
+			y = actionSet.MoveVertical.Value
 		};
+
 		movementSettings.UpdateDesiredTargetSpeed(input);
 		return input;
 	}
@@ -225,7 +288,18 @@ public class FWPlayerController : MonoBehaviour
 		// get the rotation before it's changed
 		float oldYRotation = transform.eulerAngles.y;
 
-		mouseLook.LookRotation(transform, cam.transform);
+		if (controlType == ControlType.Keyboard)
+		{
+			float yRot = CrossPlatformInputManager.GetAxis("Mouse X");
+			float xRot = CrossPlatformInputManager.GetAxis("Mouse Y");
+			mouseLook.LookRotation(transform, cam.transform, xRot * mouseLook.XSensitivity, yRot * mouseLook.YSensitivity);
+		}
+		else
+		{
+			float yRot = actionSet.LookHorizontal.Value * mouseLook.XSensitivity;
+			float xRot = actionSet.LookVertical.Value * mouseLook.YSensitivity;
+			mouseLook.LookRotation(transform, cam.transform, xRot, yRot);
+		}
 
 		if (m_IsGrounded || advancedSettings.airControl)
 		{

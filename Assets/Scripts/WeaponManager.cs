@@ -31,44 +31,6 @@ public class WeaponManager : MonoBehaviour
 		}
 	}
 
-    public void Update()
-    {
-        if (CrossPlatformInputManager.GetButtonDown("Fire1"))
-        {
-            currentWeapon.PrimaryFireStart();
-        }
-
-        if (CrossPlatformInputManager.GetButtonUp("Fire1"))
-        {
-            currentWeapon.PrimaryFireEnd();
-        }
-
-		if (CrossPlatformInputManager.GetButtonDown("Fire2"))
-		{
-			currentWeapon.SecondaryFireStart();
-		}
-
-		if (CrossPlatformInputManager.GetButtonUp("Fire2"))
-		{
-			currentWeapon.SecondaryFireEnd();
-		}
-
-		if (Input.GetKeyDown(KeyCode.R))
-		{
-			currentWeapon.Reload();
-		}
-
-		if (Input.GetKeyDown(KeyCode.C))
-		{
-			PreviousWeapon();
-		}
-
-		if (Input.GetKeyDown(KeyCode.V))
-		{
-			NextWeapon();
-		}
-    }
-
 	private int currentWeaponIndex;
 	public void SetWeaponToIndex(int idx)
 	{
@@ -87,6 +49,31 @@ public class WeaponManager : MonoBehaviour
 		{
 			currentWeapon.playerCamera = myCamera;
 		}
+	}
+
+	public void CurrentWeaponPrimaryFireStart()
+	{
+		currentWeapon.PrimaryFireStart();
+	}
+
+	public void CurrentWeaponPrimaryFireStop()
+	{
+		currentWeapon.PrimaryFireEnd();
+	}
+
+	public void CurrentWeaponSecondaryFireStart()
+	{
+		currentWeapon.SecondaryFireStart();
+	}
+
+	public void CurrentWeaponSecondaryFireStop()
+	{
+		currentWeapon.SecondaryFireEnd();
+	}
+
+	public void CurrentWeaponReload()
+	{
+		currentWeapon.Reload();
 	}
 
 	public void NextWeapon()

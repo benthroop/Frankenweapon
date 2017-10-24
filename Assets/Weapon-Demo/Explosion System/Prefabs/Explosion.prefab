@@ -588,6 +588,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   fire: {fileID: 1474578525031598, guid: 3dee2ecbb6e77e543913206445c44bfa, type: 2}
   scorch: {fileID: 2100000, guid: 6b31eb8cf627de44b99d21c9da59dc13, type: 2}
-  explosiveForce: 4000
+  explosiveForce: 400
   explosiveRadius: 10
-  upwardsForce: 1000
+  upwardsForce: 100

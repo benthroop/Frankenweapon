@@ -151,6 +151,8 @@ MonoBehaviour:
   - {fileID: 114332084374519294, guid: 0006c6c291a28ab438b59387de65a45d, type: 2}
   - {fileID: 114913168150211772, guid: a5f652f4cf8b62e40b142c94768f1bbc, type: 2}
   - {fileID: 114895948448691174, guid: 135c2037954ea09419b5a0d4c2a5910f, type: 2}
+  - {fileID: 114983242860999836, guid: ce1104b949265a5408c280d337433fff, type: 2}
+  - {fileID: 114279537006824334, guid: 8e50819bc6885ee4cae8f7fffa8713fb, type: 2}
   currentWeapon: {fileID: 0}
   registrationPoint: {fileID: 341177714}
 --- !u!114 &73405515
@@ -601,6 +603,8 @@ MonoBehaviour:
   - {fileID: 114332084374519294, guid: 0006c6c291a28ab438b59387de65a45d, type: 2}
   - {fileID: 114913168150211772, guid: a5f652f4cf8b62e40b142c94768f1bbc, type: 2}
   - {fileID: 114895948448691174, guid: 135c2037954ea09419b5a0d4c2a5910f, type: 2}
+  - {fileID: 114983242860999836, guid: ce1104b949265a5408c280d337433fff, type: 2}
+  - {fileID: 114279537006824334, guid: 8e50819bc6885ee4cae8f7fffa8713fb, type: 2}
   currentWeapon: {fileID: 0}
   registrationPoint: {fileID: 949767148}
 --- !u!114 &292304580

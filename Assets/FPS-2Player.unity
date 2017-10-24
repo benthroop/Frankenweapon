@@ -125,7 +125,7 @@ GameObject:
   - component: {fileID: 73405514}
   m_Layer: 8
   m_Name: Player-Controller-2
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -165,7 +165,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f00ff6ed6239a774cb70ee754d8401d2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  controlType: 1
+  controlType: 2
   cam: {fileID: 477596023}
   movementSettings:
     ForwardSpeed: 8
@@ -353,6 +353,54 @@ MonoBehaviour:
     type: 2}
   m_PrefabInternal: {fileID: 739517854}
   m_Script: {fileID: 11500000, guid: aa87fdd4b1b40fd468dfc52b453c6c15, type: 3}
+--- !u!1 &150223275
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 150223278}
+  - component: {fileID: 150223277}
+  - component: {fileID: 150223276}
+  m_Layer: 0
+  m_Name: AudioListener
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &150223276
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 150223275}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aa77ae1b9a4e31a4baf80e8242056854, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!81 &150223277
+AudioListener:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 150223275}
+  m_Enabled: 1
+--- !u!4 &150223278
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 150223275}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -2.1801095, y: -1.644743, z: -5.103016}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 5
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &159887393
 GameObject:
   m_ObjectHideFlags: 0
@@ -527,7 +575,7 @@ GameObject:
   - component: {fileID: 292304579}
   m_Layer: 8
   m_Name: Player-Controller-1
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -567,7 +615,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f00ff6ed6239a774cb70ee754d8401d2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  controlType: 0
+  controlType: 1
   cam: {fileID: 1438609830}
   movementSettings:
     ForwardSpeed: 8
@@ -923,12 +971,11 @@ GameObject:
   m_Component:
   - component: {fileID: 477596019}
   - component: {fileID: 477596023}
-  - component: {fileID: 477596022}
   - component: {fileID: 477596021}
   - component: {fileID: 477596020}
   m_Layer: 0
   m_Name: MainCamera
-  m_TagString: MainCamera
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1016,14 +1063,6 @@ MonoBehaviour:
   playerController: {fileID: 73405515}
   StrideInterval: 4
   RunningStrideLengthen: 0.722
---- !u!81 &477596022
-AudioListener:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 81288016339932530, guid: a468d37f4ad961d44979d408275ef0d7,
-    type: 2}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 477596018}
-  m_Enabled: 1
 --- !u!20 &477596023
 Camera:
   m_ObjectHideFlags: 0
@@ -2024,7 +2063,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1438609826}
   - component: {fileID: 1438609830}
-  - component: {fileID: 1438609829}
   - component: {fileID: 1438609828}
   - component: {fileID: 1438609827}
   m_Layer: 0
@@ -2117,14 +2155,6 @@ MonoBehaviour:
   playerController: {fileID: 292304580}
   StrideInterval: 4
   RunningStrideLengthen: 0.722
---- !u!81 &1438609829
-AudioListener:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 81288016339932530, guid: a468d37f4ad961d44979d408275ef0d7,
-    type: 2}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1438609825}
-  m_Enabled: 1
 --- !u!20 &1438609830
 Camera:
   m_ObjectHideFlags: 0

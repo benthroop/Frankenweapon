@@ -153,6 +153,7 @@ public class FWPlayerController : MonoBehaviour
 			actionSet.PreviousWeapon.AddDefaultBinding(InputControlType.DPadDown);
 		}
 
+		if (controlType == ControlType.Controller1)
 		{
 			if (InputManager.Devices.Count > 0)
 			{

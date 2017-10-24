@@ -62,7 +62,7 @@ public class FWPlayerController : MonoBehaviour
 	public FWPlayerActionSet actionSet;
 	private WeaponManager weaponManager;
 
-	public enum ControlType { Keyboard, Controller }
+	public enum ControlType { Keyboard, Controller1, Controller2 }
 	public ControlType controlType = ControlType.Keyboard;
 
 	[Serializable]
@@ -151,6 +151,30 @@ public class FWPlayerController : MonoBehaviour
 			actionSet.Reload.AddDefaultBinding(InputControlType.Action3);
 			actionSet.NextWeapon.AddDefaultBinding(InputControlType.DPadUp);
 			actionSet.PreviousWeapon.AddDefaultBinding(InputControlType.DPadDown);
+		}
+
+		{
+			if (InputManager.Devices.Count > 0)
+			{
+				actionSet.Device = InputManager.Devices[0];
+			}
+		}
+		else if (controlType == ControlType.Controller2)
+		{
+			if (InputManager.Devices.Count > 1)
+			{
+				actionSet.Device = InputManager.Devices[1];
+			}
+			else if (InputManager.Devices.Count > 0)
+			{
+				actionSet.Device = InputManager.Devices[0];
+				Debug.LogWarning("There's only one controller. Assigning Player 2 to Device 0");
+			}
+			else
+			{
+				controlType = ControlType.Keyboard;
+				Debug.LogWarning("There are no controllers. Reverting to keyboard for everyone!");
+			}
 		}
 	}
 

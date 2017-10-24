@@ -3,7 +3,6 @@ using UnityEngine;
 using UnityStandardAssets.CrossPlatformInput;
 using InControl;
 
-
 [RequireComponent(typeof(Rigidbody))]
 [RequireComponent(typeof(CapsuleCollider))]
 [RequireComponent(typeof(WeaponManager))]
@@ -244,8 +243,6 @@ public class FWPlayerController : MonoBehaviour
 				m_RigidBody.AddForce(desiredMove * SlopeMultiplier(), ForceMode.Impulse);
 			}
 
-			//m_RigidBody.AddForce(desiredMove, ForceMode.Impulse);
-
 			m_RigidBody.drag = 5f;
 
 			if (m_Jump)
@@ -254,11 +251,6 @@ public class FWPlayerController : MonoBehaviour
 				m_RigidBody.velocity = new Vector3(m_RigidBody.velocity.x, 0f, m_RigidBody.velocity.z);
 				m_RigidBody.AddForce(new Vector3(0f, movementSettings.JumpForce, 0f), ForceMode.Impulse);
 				m_Jumping = true;
-			}
-
-			if (!m_Jumping && Mathf.Abs(input.x) < float.Epsilon && Mathf.Abs(input.y) < float.Epsilon && m_RigidBody.velocity.magnitude < 1f)
-			{
-				m_RigidBody.Sleep();
 			}
 		}
 		else
@@ -275,22 +267,6 @@ public class FWPlayerController : MonoBehaviour
 		float angle = Vector3.Angle(m_GroundContactNormal, Vector3.up);
 		return movementSettings.SlopeCurveModifier.Evaluate(angle);
 	}
-
-
-	private void StickToGroundHelper()
-	{
-		RaycastHit hitInfo;
-		if (Physics.SphereCast(transform.position, m_Capsule.radius * (1.0f - advancedSettings.shellOffset), Vector3.down, out hitInfo,
-								((m_Capsule.height / 2f) - m_Capsule.radius) +
-								advancedSettings.stickToGroundHelperDistance, Physics.AllLayers, QueryTriggerInteraction.Ignore))
-		{
-			if (Mathf.Abs(Vector3.Angle(hitInfo.normal, Vector3.up)) < 85f)
-			{
-				m_RigidBody.velocity = Vector3.ProjectOnPlane(m_RigidBody.velocity, hitInfo.normal);
-			}
-		}
-	}
-
 
 	private Vector2 GetInput()
 	{

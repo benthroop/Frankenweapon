@@ -337,6 +337,7 @@ MonoBehaviour:
   - {fileID: 114279537006824334, guid: 8e50819bc6885ee4cae8f7fffa8713fb, type: 2}
   - {fileID: 114983242860999836, guid: ce1104b949265a5408c280d337433fff, type: 2}
   - {fileID: 114514316725077274, guid: 3aff4b4684d256640bcd2e8b53bcddf7, type: 2}
+  - {fileID: 114845564261364320, guid: 3196d6c90f13b944e99ba6bdc248591b, type: 2}
   currentWeapon: {fileID: 0}
   registrationPoint: {fileID: 949767148}
 --- !u!114 &292304580

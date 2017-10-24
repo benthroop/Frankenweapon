@@ -167,7 +167,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f00ff6ed6239a774cb70ee754d8401d2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  controlType: 2
+  controlType: 1
   cam: {fileID: 477596023}
   movementSettings:
     ForwardSpeed: 8
@@ -619,7 +619,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f00ff6ed6239a774cb70ee754d8401d2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  controlType: 1
+  controlType: 0
   cam: {fileID: 1438609830}
   movementSettings:
     ForwardSpeed: 8

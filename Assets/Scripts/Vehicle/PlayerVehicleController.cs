@@ -3,16 +3,18 @@ using System.Collections.Generic;
 using UnityEngine;
 using InControl;
 
+[RequireComponent(typeof(VehicleBase))]
 public class PlayerVehicleController : MonoBehaviour 
 {
 	VehicleActionSet vehicleActions;
-	[SerializeField] VehicleBase myVehicle;
+	VehicleBase myVehicle;
 
 	public enum ControlType { Keyboard, Controller1, Controller2 }
 	public ControlType controlType = ControlType.Keyboard;
 
 	void Start()
 	{
+		myVehicle = GetComponent<VehicleBase>();
 		vehicleActions = new VehicleActionSet();
 
 		if (controlType == ControlType.Keyboard)
@@ -50,12 +52,22 @@ public class PlayerVehicleController : MonoBehaviour
 
 		if (vehicleActions.Boost.WasPressed)
 		{
-			myVehicle.Boost();
+			myVehicle.BoostStart();
+		}
+
+		if (vehicleActions.Boost.WasReleased)
+		{
+			myVehicle.BoostStop();
 		}
 
 		if (vehicleActions.Action.WasPressed)
 		{
-			myVehicle.Action();
+			myVehicle.ActionStart();
+		}
+
+		if (vehicleActions.Action.WasReleased)
+		{
+			myVehicle.ActionStop();
 		}
 
 		if (vehicleActions.NextGear.WasPressed)

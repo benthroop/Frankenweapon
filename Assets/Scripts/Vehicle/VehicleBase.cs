@@ -17,12 +17,22 @@ public class VehicleBase : MonoBehaviour
 		steeringControlValue = steeringValue;
 	}
 
-	public virtual void Boost()
+	public virtual void BoostStart()
 	{
 
 	}
 
-	public virtual void Action()
+	public virtual void BoostStop()
+	{
+	
+	}
+
+	public virtual void ActionStart()
+	{
+
+	}
+
+	public virtual void ActionStop()
 	{
 
 	}

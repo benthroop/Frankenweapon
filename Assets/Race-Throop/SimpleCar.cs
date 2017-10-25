@@ -29,6 +29,9 @@ public class SimpleCar : VehicleBase
 		//torque
 		backLeft.motorTorque = throttleControlValue * maxTorque;
 		backRight.motorTorque = throttleControlValue * maxTorque;
+
+		//notice that the wheel visuals do NOT turn. You might want to make that work if it's visible to the player.
+		//there's actually a bit about that in the Unity Wheelcollider tutorial: https://docs.unity3d.com/Manual/WheelColliderTutorial.html
 	}
 	
 	void Update () 
@@ -36,12 +39,22 @@ public class SimpleCar : VehicleBase
 		Drive ();
 	}
 
-	public override void Boost()
+	public override void BoostStart()
 	{
 		//all you
 	}
 
-	public override void Action()
+	public override void BoostStop()
+	{
+		//all you
+	}
+
+	public override void ActionStart()
+	{
+		//all you
+	}
+
+	public override void ActionStop()
 	{
 		//all you
 	}

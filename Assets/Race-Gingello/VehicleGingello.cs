@@ -14,6 +14,7 @@ public class VehicleGingello : VehicleBase
     public bool Boosting;
 
 
+
 	void Start () 
 	{
 		//this is to keep the wheels from jittering
@@ -45,15 +46,36 @@ public class VehicleGingello : VehicleBase
             Debug.Log(backLeft.motorTorque.ToString());
 
         }
-		//notice that the wheel visuals do NOT turn. You might want to make that work if it's visible to the player.
-		//there's actually a bit about that in the Unity Wheelcollider tutorial: https://docs.unity3d.com/Manual/WheelColliderTutorial.html
-	}
-	
-	void Update () 
-	{
-        Drive();
+        ApplyLocalPositionToVisuals(frontRight);
+        ApplyLocalPositionToVisuals(frontLeft);
+        ApplyLocalPositionToVisuals(backRight);
+        ApplyLocalPositionToVisuals(backLeft);
+        //notice that the wheel visuals do NOT turn. You might want to make that work if it's visible to the player.
+        //there's actually a bit about that in the Unity Wheelcollider tutorial: https://docs.unity3d.com/Manual/WheelColliderTutorial.html
+    }
+    public void ApplyLocalPositionToVisuals(WheelCollider collider)
+    {
+        if (collider.transform.childCount == 0)
+        {
+            return;
+        }
+
+        Transform visualWheel = collider.transform.GetChild(0);
+
+        Vector3 position;
+        Quaternion rotation;
+        collider.GetWorldPose(out position, out rotation);
+
+        visualWheel.transform.position = position;
+        visualWheel.transform.rotation = rotation;
     }
 
+
+    void Update () 
+	{
+   
+        Drive();
+    }
 	public override void BoostStart()
     {
         Boosting = true;        

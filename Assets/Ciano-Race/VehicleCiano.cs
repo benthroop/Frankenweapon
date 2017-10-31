@@ -33,7 +33,8 @@ public class VehicleCiano : VehicleBase {
 		backLeft.motorTorque = throttleControlValue * maxTorque;
 		backRight.motorTorque = throttleControlValue * maxTorque;
 
-		VelocityOfCar = GetComponent<Rigidbody> ().velocity.magnitude;
+
+		VelocityOfCar = Vector3.Project(GetComponent<Rigidbody>().velocity, transform.forward).magnitude;
 
 		if (GetComponent<Rigidbody> ().velocity.x >= 0) {
 			DrivingForward = false;
@@ -51,6 +52,7 @@ public class VehicleCiano : VehicleBase {
 
 		foreach (GameObject RightWheel in RightWheels) {
 			if (DrivingForward == true) {
+				
 				RightWheel.transform.Rotate (new Vector3 (VelocityOfCar * 50 * Time.deltaTime, 0, 0));
 			} else {
 				RightWheel.transform.Rotate (new Vector3 (VelocityOfCar * -50 * Time.deltaTime, 0, 0));

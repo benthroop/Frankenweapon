@@ -36,8 +36,8 @@ public class VehicleDemo : VehicleBase
 		//notice that the wheel visuals do NOT turn. You might want to make that work if it's visible to the player.
 		//there's actually a bit about that in the Unity Wheelcollider tutorial: https://docs.unity3d.com/Manual/WheelColliderTutorial.html
 
-         //flWheel.localEulerAngles = new Vector3(flWheel.localEulerAngles.x, frontLeft.steerAngle - flWheel.localEulerAngles.z, flWheel.localEulerAngles.z);
-         //frWheel.localEulerAngles = new Vector3(frWheel.localEulerAngles.x, frontRight.steerAngle - frWheel.localEulerAngles.z, frWheel.localEulerAngles.z);
+         flWheel.localEulerAngles = new Vector3(flWheel.localEulerAngles.x, frontLeft.steerAngle - flWheel.localEulerAngles.z, flWheel.localEulerAngles.z);
+         frWheel.localEulerAngles = new Vector3(frWheel.localEulerAngles.x, frontRight.steerAngle - frWheel.localEulerAngles.z, frWheel.localEulerAngles.z);
  
          flWheel.Rotate(frontLeft.rpm / 60 * 360 * Time.deltaTime, 0, 0);
          frWheel.Rotate(frontRight.rpm / 60 * 360 * Time.deltaTime, 0, 0);

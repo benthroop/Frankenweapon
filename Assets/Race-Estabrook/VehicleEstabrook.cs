@@ -11,6 +11,8 @@ public class VehicleEstabrook: VehicleBase
 	public float maxSteer;
 	public float maxTorque;
 
+    public GameObject gun;
+
 	void Start () 
 	{
 		//this is to keep the wheels from jittering
@@ -37,8 +39,14 @@ public class VehicleEstabrook: VehicleBase
 
        
     }
-	
-	void FixedUpdate () 
+
+    private void Update()
+    {
+        FindTarget();
+        //gun.transform.Rotate(Vector3.up * 180);
+    }
+
+    void FixedUpdate () 
 	{
 		Drive ();
 
@@ -68,6 +76,55 @@ public class VehicleEstabrook: VehicleBase
 
     }
 
+    public void FindTarget()
+    {
+        int layermask = 1 << 31;
+        layermask = ~layermask;
+
+        GameObject target = null;
+
+        Collider[] sensedObjects = Physics.OverlapSphere(gun.transform.position, 5f, layermask);
+        for(int i = 0; i < sensedObjects.Length; i++)
+        {
+           
+            Rigidbody hitRB = sensedObjects[i].GetComponent<Rigidbody>();
+
+            RaycastHit hitItem;
+
+            
+
+            if (Physics.Linecast(gun.transform.position, sensedObjects[i].transform.position, out hitItem, layermask))
+            {
+                if (hitRB != null && hitRB.tag == "Wood")
+                {
+                    Debug.Log(hitItem.transform.name);
+
+                    target = hitItem.transform.gameObject;
+                        //hitRB.AddForce(hitItem.normal * -500f);
+                        //hitRB.AddForce(Vector3.up * 500f);
+
+                }
+            }
+            
+        }
+        if(target != null)
+        {
+            gun.transform.rotation = Quaternion.LookRotation(target.transform.position, Vector3.up);
+
+        }
+        /*RaycastHit targetcar;
+        if(Physics.SphereCast(gun.transform.position, 1f, gun.transform.right, out targetcar, 100))
+        {
+            Debug.Log("Test");
+            Debug.Log("RaycastHit: " + targetcar.transform.name);
+            if (targetcar.transform.gameObject.tag == "Wood")
+            {
+                Debug.Log("Hit");
+                targetcar.rigidbody.AddForce(targetcar.normal * 300);
+            }
+        }*/
+    }
+
     public override void BoostStart()
 	{
 		//all you
@@ -80,7 +137,7 @@ public class VehicleEstabrook: VehicleBase
 
 	public override void ActionStart()
 	{
-		//all you
+        
 	}
 
 	public override void ActionStop()

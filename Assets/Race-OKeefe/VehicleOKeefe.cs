@@ -30,11 +30,30 @@ public class VehicleOKeefe : VehicleBase
 		backLeft.motorTorque = throttleControlValue * maxTorque;
 		backRight.motorTorque = throttleControlValue * maxTorque;
 
-		//notice that the wheel visuals do NOT turn. You might want to make that work if it's visible to the player.
-		//there's actually a bit about that in the Unity Wheelcollider tutorial: https://docs.unity3d.com/Manual/WheelColliderTutorial.html
+        ApplyLocalPositionToVisuals(frontLeft);
+        ApplyLocalPositionToVisuals(frontRight);
+        ApplyLocalPositionToVisuals(backLeft);
+        ApplyLocalPositionToVisuals(backRight);
 	}
-	
-	void Update () 
+
+    public void ApplyLocalPositionToVisuals(WheelCollider collider)
+    {
+        if (collider.transform.childCount == 0)
+        {
+            return;
+        }
+
+        Transform visualWheel = collider.transform.GetChild(0);
+
+        Vector3 position;
+        Quaternion rotation;
+        collider.GetWorldPose(out position, out rotation);
+
+        visualWheel.transform.position = position;
+        visualWheel.transform.rotation = rotation;
+    }
+
+    void Update () 
 	{
 		Drive ();
 	}

@@ -46,9 +46,10 @@ public class SimpleCar : VehicleBase
 		frontLeft.steerAngle = steeringControlValue * maxSteer;
 		frontRight.steerAngle = steeringControlValue * maxSteer;
 
-		//brakes!
+		//throttle backward
 		if (throttleControlValue < 0f) 
 		{
+            //moving backward
 			if (transform.InverseTransformVector(GetComponent<Rigidbody>().velocity).z < Mathf.Epsilon)
 			{
 				backLeft.brakeTorque = 0f;
@@ -59,6 +60,7 @@ public class SimpleCar : VehicleBase
 				backLeft.motorTorque = throttleControlValue * maxTorque;
 				backRight.motorTorque = throttleControlValue * maxTorque;
 			}
+            //moving forward
 			else
 			{
 				backLeft.brakeTorque = maxBrake * Mathf.Abs(throttleControlValue);
@@ -67,8 +69,10 @@ public class SimpleCar : VehicleBase
 				frontRight.brakeTorque = maxBrake * Mathf.Abs(throttleControlValue);
 			}
 		}
+        //throttle forward
 		else
 		{
+            //moving forward
 			if (transform.InverseTransformVector(GetComponent<Rigidbody>().velocity).z > Mathf.Epsilon)
 			{
 				backLeft.brakeTorque = 0f;
@@ -79,6 +83,7 @@ public class SimpleCar : VehicleBase
 				backLeft.motorTorque = throttleControlValue * maxTorque;
 				backRight.motorTorque = throttleControlValue * maxTorque;
 			}
+            //moving backward
 			else
 			{
 				backLeft.brakeTorque = maxBrake * Mathf.Abs(throttleControlValue);

@@ -30,7 +30,6 @@ public class VehicleCiano : VehicleBase {
 		frontLeft.steerAngle = steeringControlValue * maxSteer;
 		frontRight.steerAngle = steeringControlValue * maxSteer;
 
-		//torque
 		backLeft.motorTorque = throttleControlValue * maxTorque;
 		backRight.motorTorque = throttleControlValue * maxTorque;
 

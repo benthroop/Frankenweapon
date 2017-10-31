@@ -37,7 +37,26 @@ public class VehicleAlter : VehicleBase
 	void Update () 
 	{
 		Drive ();
+        VisualSpin(frontLeft);
+        VisualSpin(frontRight);
+        
 	}
+
+    void VisualSpin(WheelCollider collider)
+    {
+        if (collider.transform.childCount == 0)
+        {
+            return;
+        }
+        Transform visualWheel = collider.transform.GetChild(0);
+        Vector3 position;
+        Quaternion rotation;
+        collider.GetWorldPose(out position, out rotation);
+
+        visualWheel.transform.position = position;
+        visualWheel.transform.rotation = rotation;
+    }
+
 
 	public override void BoostStart()
 	{

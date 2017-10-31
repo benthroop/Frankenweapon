@@ -39,7 +39,7 @@ GameObject:
   - component: {fileID: 65000011622965136}
   - component: {fileID: 23000013520751252}
   - component: {fileID: 54000012024476154}
-  - component: {fileID: 114000011313998144}
+  - component: {fileID: 114212079659227954}
   - component: {fileID: 114585360831609878}
   m_Layer: 0
   m_Name: Vehicle-Gingello
@@ -569,7 +569,7 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &114000011313998144
+--- !u!114 &114212079659227954
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -577,15 +577,15 @@ MonoBehaviour:
   m_GameObject: {fileID: 1000012082766304}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 02ef22fbed01b71499633ac5736674af, type: 3}
+  m_Script: {fileID: 11500000, guid: 0b52c069f19070144a2dde9d47f2bdd2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  frontRight: {fileID: 146000010062207238}
-  frontLeft: {fileID: 146000010451434082}
-  backRight: {fileID: 146000010194086486}
-  backLeft: {fileID: 146000010486055952}
-  maxSteer: 30
-  maxTorque: 500
+  frontRight: {fileID: 0}
+  frontLeft: {fileID: 0}
+  backRight: {fileID: 0}
+  backLeft: {fileID: 0}
+  maxSteer: 0
+  maxTorque: 0
 --- !u!114 &114585360831609878
 MonoBehaviour:
   m_ObjectHideFlags: 1

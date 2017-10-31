@@ -10,6 +10,9 @@ public class VehicleGingello : VehicleBase
 
 	public float maxSteer;
 	public float maxTorque;
+    public float Boost;
+    public bool Boosting;
+
 
 	void Start () 
 	{
@@ -18,6 +21,7 @@ public class VehicleGingello : VehicleBase
 		frontLeft.ConfigureVehicleSubsteps(5f, 12, 15);
 		backRight.ConfigureVehicleSubsteps(5f, 12, 15);
 		backLeft.ConfigureVehicleSubsteps(5f, 12, 15);
+      
 	}
 
 	void Drive()
@@ -25,28 +29,39 @@ public class VehicleGingello : VehicleBase
 		//turning
 		frontLeft.steerAngle = steeringControlValue * maxSteer;
 		frontRight.steerAngle = steeringControlValue * maxSteer;
+        if (Boosting == false)
+        {
+            //torque
+            backLeft.motorTorque = throttleControlValue * maxTorque;
+            backRight.motorTorque = throttleControlValue * maxTorque;
+            Debug.Log(backRight.motorTorque.ToString());
+            Debug.Log(backLeft.motorTorque.ToString());
+        }
+        if(Boosting == true)
+        {
+            backLeft.motorTorque = throttleControlValue * maxTorque * Boost;
+            backRight.motorTorque = throttleControlValue * maxTorque * Boost;
+            Debug.Log(backRight.motorTorque.ToString());
+            Debug.Log(backLeft.motorTorque.ToString());
 
-		//torque
-		backLeft.motorTorque = throttleControlValue * maxTorque;
-		backRight.motorTorque = throttleControlValue * maxTorque;
-
+        }
 		//notice that the wheel visuals do NOT turn. You might want to make that work if it's visible to the player.
 		//there's actually a bit about that in the Unity Wheelcollider tutorial: https://docs.unity3d.com/Manual/WheelColliderTutorial.html
 	}
 	
 	void Update () 
 	{
-		Drive ();
-	}
+        Drive();
+    }
 
 	public override void BoostStart()
-	{
-		//all you
-	}
+    {
+        Boosting = true;        
+    }
 
 	public override void BoostStop()
 	{
-		//all you
+	    Boosting = false;
 	}
 
 	public override void ActionStart()

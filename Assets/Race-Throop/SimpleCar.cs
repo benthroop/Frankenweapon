@@ -41,7 +41,7 @@ public class SimpleCar : VehicleBase
 
 	public override void BoostStart()
 	{
-		//all you
+        Debug.Log("Boost");
 	}
 
 	public override void BoostStop()

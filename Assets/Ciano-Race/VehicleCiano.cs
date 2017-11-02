@@ -3,87 +3,114 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class VehicleCiano : VehicleBase {
-	
-	[SerializeField] WheelCollider frontRight;
-	[SerializeField] WheelCollider frontLeft;
-	[SerializeField] WheelCollider backRight;
-	[SerializeField] WheelCollider backLeft;
+		[SerializeField] WheelCollider frontRight;
+		[SerializeField] WheelCollider frontLeft;
+		[SerializeField] WheelCollider backRight;
+		[SerializeField] WheelCollider backLeft;
 
-	public bool DrivingForward;
-	public List<GameObject> LeftWheels;
-	public List<GameObject> RightWheels;
+		public float maxSteer;
+		public float maxTorque;
+		public float maxBrake;
 
-	public float VelocityOfCar;
-	public float maxSteer;
-	public float maxTorque;
-
-	void Start () {
-		//this is to keep the wheels from jittering
-		frontRight.ConfigureVehicleSubsteps(5f, 12, 15);
-		frontLeft.ConfigureVehicleSubsteps(5f, 12, 15);
-		backRight.ConfigureVehicleSubsteps(5f, 12, 15);
-		backLeft.ConfigureVehicleSubsteps(5f, 12, 15);
-	}
-
-	void Drive() {
-		//turning
-		frontLeft.steerAngle = steeringControlValue * maxSteer;
-		frontRight.steerAngle = steeringControlValue * maxSteer;
-
-		backLeft.motorTorque = throttleControlValue * maxTorque;
-		backRight.motorTorque = throttleControlValue * maxTorque;
-
-
-
-		VelocityOfCar = Vector3.Project(GetComponent<Rigidbody>().velocity, transform.forward).magnitude;
-
-		if (GetComponent<Rigidbody> ().velocity.x >= 0) {
-			DrivingForward = false;
-		} else {
-			DrivingForward = true;
+		void Start () 
+		{
+			//this is to keep the wheels from jittering
+			frontRight.ConfigureVehicleSubsteps(5f, 12, 15);
+			frontLeft.ConfigureVehicleSubsteps(5f, 12, 15);
+			backRight.ConfigureVehicleSubsteps(5f, 12, 15);
+			backLeft.ConfigureVehicleSubsteps(5f, 12, 15);
 		}
 
-
-
-		foreach (GameObject LeftWheel in LeftWheels) {
-			if (DrivingForward == true) {
-				LeftWheel.transform.Rotate (new Vector3 (VelocityOfCar * 50 * Time.deltaTime, 0, 0));
-			} else {
-				LeftWheel.transform.Rotate (new Vector3 (VelocityOfCar * -50 * Time.deltaTime, 0, 0));
-			}
-		}
-
-		foreach (GameObject RightWheel in RightWheels) {
-			if (DrivingForward == true) {
-				
-				RightWheel.transform.Rotate (new Vector3 (VelocityOfCar * 50 * Time.deltaTime, 0, 0));
-			} else {
-				RightWheel.transform.Rotate (new Vector3 (VelocityOfCar * -50 * Time.deltaTime, 0, 0));
+		// finds the corresponding visual wheel
+		// correctly applies the transform
+		public void ApplyLocalPositionToVisuals(WheelCollider collider) {
+			if (collider.transform.childCount == 0)
+			{
+				return;
 			}
 
+			Transform visualWheel = collider.transform.GetChild(0);
 
+			Vector3 position;
+			Quaternion rotation;
+			collider.GetWorldPose(out position, out rotation);
+
+			visualWheel.transform.position = position;
+			visualWheel.transform.rotation = rotation;
 		}
-		//notice that the wheel visuals do NOT turn. You might want to make that work if it's visible to the player.
-		//there's actually a bit about that in the Unity Wheelcollider tutorial: https://docs.unity3d.com/Manual/WheelColliderTutorial.html
-	}
 
-	void Update () {
-		Drive ();
-	}
+		void Drive() {
+			//turning
+			frontLeft.steerAngle = steeringControlValue * maxSteer;
+			frontRight.steerAngle = steeringControlValue * maxSteer;
 
-	public override void BoostStart() {
-		//all you
-	}
+			//throttle backward
+			if (throttleControlValue < 0f) 
+			{
+				//moving backward
+				if (transform.InverseTransformVector(GetComponent<Rigidbody>().velocity).z < Mathf.Epsilon)
+				{
+					backLeft.brakeTorque = 0f;
+					backRight.brakeTorque = 0f;
+					frontLeft.brakeTorque = 0f;
+					frontRight.brakeTorque = 0f;
 
-	public override void BoostStop() {
-		//all you
-	}
+					backLeft.motorTorque = throttleControlValue * maxTorque;
+					backRight.motorTorque = throttleControlValue * maxTorque;
+				}
+				//moving forward
+				else
+				{
+					backLeft.brakeTorque = maxBrake * Mathf.Abs(throttleControlValue);
+					backRight.brakeTorque = maxBrake * Mathf.Abs(throttleControlValue);
+					frontLeft.brakeTorque = maxBrake * Mathf.Abs(throttleControlValue);
+					frontRight.brakeTorque = maxBrake * Mathf.Abs(throttleControlValue);
+				}
+			} else {
+				//moving forward
+				if (transform.InverseTransformVector(GetComponent<Rigidbody>().velocity).z > Mathf.Epsilon)
+				{
+					backLeft.brakeTorque = 0f;
+					backRight.brakeTorque = 0f;
+					frontLeft.brakeTorque = 0f;
+					frontRight.brakeTorque = 0f;
 
-	public override void ActionStart() {
-		//all you
-	}
+					backLeft.motorTorque = throttleControlValue * maxTorque;
+					backRight.motorTorque = throttleControlValue * maxTorque;
+				} else {
+					backLeft.brakeTorque = maxBrake * Mathf.Abs(throttleControlValue);
+					backRight.brakeTorque = maxBrake * Mathf.Abs(throttleControlValue); ;
+					frontLeft.brakeTorque = maxBrake * Mathf.Abs(throttleControlValue);
+					frontRight.brakeTorque = maxBrake * Mathf.Abs(throttleControlValue);
+				}
+			}
 
-	public override void ActionStop() {
-		//all you
+			//notice that the wheel visuals do NOT turn. You might want to make that work if it's visible to the player.
+			//there's actually a bit about that in the Unity Wheelcollider tutorial: https://docs.unity3d.com/Manual/WheelColliderTutorial.html
+
+			ApplyLocalPositionToVisuals(frontRight);
+			ApplyLocalPositionToVisuals(frontLeft);
+			ApplyLocalPositionToVisuals(backLeft);
+			ApplyLocalPositionToVisuals(backRight);
+		}
+
+		void Update () {
+			Drive ();
+		}
+
+		public override void BoostStart(){
+			//all you
+		}
+
+		public override void BoostStop(){
+			//all you
+		}
+
+		public override void ActionStart(){
+			//all you
+		}
+
+		public override void ActionStop(){
+			//all you
+		}
 	}
-}

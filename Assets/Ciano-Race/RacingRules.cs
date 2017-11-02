@@ -4,7 +4,10 @@ using UnityEngine;
 
 public class RacingRules : MonoBehaviour {
 
-	// Use this for initialization
+	public int CurrentLap;
+	public GameObject FirstPlace;
+	public GameObject SecondPlace;
+
 	void Start () {
 		
 	}

@@ -19,15 +19,15 @@ Material:
     serializedVersion: 3
     m_TexEnvs:
     - _BumpMap:
-        m_Texture: {fileID: 0}
+        m_Texture: {fileID: 2800000, guid: 027e5542fe315c24dac94b0ee9feb2fc, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MainTex:
         m_Texture: {fileID: 2800000, guid: 58ad17cbd4d29a74f8fcda2673ecddf5, type: 3}
-        m_Scale: {x: 1, y: 1}
+        m_Scale: {x: 0.25, y: 0.25}
         m_Offset: {x: 0, y: 0}
     m_Floats:
-    - _Gloss: 0.8
-    - _Metallic: 0
+    - _Gloss: 0.841
+    - _Metallic: 0.082
     m_Colors:
     - _Color: {r: 1, g: 1, b: 1, a: 1}

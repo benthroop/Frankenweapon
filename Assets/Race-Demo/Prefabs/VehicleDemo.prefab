@@ -148,7 +148,7 @@ GameObject:
   - component: {fileID: 120743072734740422}
   m_Layer: 0
   m_Name: VehicleDemo
-  m_TagString: Untagged
+  m_TagString: vehicle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -5063,6 +5063,8 @@ MonoBehaviour:
   maxSteer: 30
   maxTorque: 500
   boostPart: {fileID: 198764378336902026}
+  impactPart: {fileID: 198162322072098916, guid: 43c2727ba0c722d42bae07cbba6c6d48,
+    type: 2}
   canBoost: 1
   canMove: 0
   countDown: {fileID: 0}

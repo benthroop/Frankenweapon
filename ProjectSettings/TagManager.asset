@@ -8,6 +8,7 @@ TagManager:
   - Glow
   - Rocket
   - Wood
+  - vehicle
   layers:
   - Default
   - TransparentFX
@@ -19,7 +20,7 @@ TagManager:
   - 
   - Weapons
   - Bullets
-  - 
+  - ' Vehicle'
   - 
   - 
   - 

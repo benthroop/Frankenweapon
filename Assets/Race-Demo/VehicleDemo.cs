@@ -15,6 +15,7 @@ public class VehicleDemo : VehicleBase
    public float maxSteer;
 	public float maxTorque;
    public ParticleSystem boostPart;
+   public ParticleSystem impactPart;
    public bool canBoost = true;
    public bool canMove = false;
    public Text countDown;
@@ -112,6 +113,16 @@ public class VehicleDemo : VehicleBase
       }
 
 	}
+
+void OnTriggerEnter(Collider col) {
+
+      if (col.tag == "vehicle")
+      {
+         ParticleSystem impactTemp = Instantiate(impactPart, col.transform.position, col.transform.rotation);
+         Destroy(impactTemp, 3f);
+      }
+
+   }
 
 	public override void BoostStop()
 	{

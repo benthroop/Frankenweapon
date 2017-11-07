@@ -114,7 +114,7 @@ Mesh:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_Name: pb_Mesh-253272
+  m_Name: pb_Mesh20030
   serializedVersion: 8
   m_SubMeshes:
   - serializedVersion: 2
@@ -2289,11 +2289,11 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4919380645237874, guid: 9a5bce39661b4334c81f04fd2864d028, type: 2}
       propertyPath: m_LocalRotation.x
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 4919380645237874, guid: 9a5bce39661b4334c81f04fd2864d028, type: 2}
       propertyPath: m_LocalRotation.y
-      value: -0
+      value: -0.6690546
       objectReference: {fileID: 0}
     - target: {fileID: 4919380645237874, guid: 9a5bce39661b4334c81f04fd2864d028, type: 2}
       propertyPath: m_LocalRotation.z
@@ -2301,16 +2301,11 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4919380645237874, guid: 9a5bce39661b4334c81f04fd2864d028, type: 2}
       propertyPath: m_LocalRotation.w
-      value: 1
+      value: 0.74321324
       objectReference: {fileID: 0}
     - target: {fileID: 4919380645237874, guid: 9a5bce39661b4334c81f04fd2864d028, type: 2}
       propertyPath: m_RootOrder
       value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 114826018224670506, guid: 9a5bce39661b4334c81f04fd2864d028,
-        type: 2}
-      propertyPath: maxTorque
-      value: 600
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 9a5bce39661b4334c81f04fd2864d028, type: 2}
@@ -2320,7 +2315,7 @@ Mesh:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_Name: pb_Mesh15898
+  m_Name: pb_Mesh20016
   serializedVersion: 8
   m_SubMeshes:
   - serializedVersion: 2
@@ -2645,7 +2640,7 @@ Mesh:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_Name: pb_Mesh15944
+  m_Name: pb_Mesh20048
   serializedVersion: 8
   m_SubMeshes:
   - serializedVersion: 2

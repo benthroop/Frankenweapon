@@ -1,6 +1,8 @@
 ﻿using UnityEngine;
 using System.Collections;
 
+
+[RequireComponent(typeof(Rigidbody))]
 public class VehicleGingello : VehicleBase 
 {
 	[SerializeField] WheelCollider frontRight;
@@ -12,7 +14,10 @@ public class VehicleGingello : VehicleBase
 	public float maxTorque;
     public float Boost;
     public float maxBrake;
+    public float DownForce;
     public bool Boosting;
+
+   
 
 
 
@@ -23,10 +28,40 @@ public class VehicleGingello : VehicleBase
 		frontLeft.ConfigureVehicleSubsteps(5f, 12, 15);
 		backRight.ConfigureVehicleSubsteps(5f, 12, 15);
 		backLeft.ConfigureVehicleSubsteps(5f, 12, 15);
-      
+        
 	}
+    void Update()
+    {
+        Drive();    
+    }
+    void FixedUpdate()
+    {
+        if (IsGrounded())
+        {
+            AddSweetDownForce();
+            Debug.Log("Down");
+        }       
+    }
 
-	void Drive()
+     public bool IsGrounded()
+    {
+
+        WheelHit leftHit;
+        WheelHit rightHit;
+        bool result = false;
+        if(frontLeft.GetGroundHit(out leftHit))
+        {
+            result = true;
+        }
+        if(frontRight.GetGroundHit(out rightHit))
+        {
+            result = true;
+        }
+        
+        return result;
+    }
+
+    void Drive()
 	{
         //turning
         frontLeft.steerAngle = steeringControlValue * maxSteer;
@@ -118,11 +153,7 @@ public class VehicleGingello : VehicleBase
     }
 
 
-    void Update () 
-	{
    
-        Drive();
-    }
 	public override void BoostStart()
     {
         Boosting = true;        
@@ -135,11 +166,25 @@ public class VehicleGingello : VehicleBase
 
 	public override void ActionStart()
 	{
-		//all you
-	}
+        backLeft.brakeTorque = 10000f;
+        backRight.brakeTorque = 10000f;
+    }
 
 	public override void ActionStop()
 	{
-		//all you
-	}
+        backLeft.brakeTorque = 0f;
+        backRight.brakeTorque = 0f;
+    }
+
+
+    public void AddSweetDownForce()
+    {
+
+            GetComponent<Rigidbody>().AddForce(-transform.up * DownForce * GetComponent<Rigidbody>().velocity.magnitude);
+        }
+  
+
+
+    
+
 }

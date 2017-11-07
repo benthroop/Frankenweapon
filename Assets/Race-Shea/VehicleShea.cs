@@ -10,9 +10,12 @@ public class VehicleShea : VehicleBase
 
 	public float maxSteer;
 	public float maxTorque;
+    public int maxTorqueIncrement;
+    private float maxTorqueStart;
 
 	void Start () 
 	{
+        maxTorqueStart = maxTorque;
 		//this is to keep the wheels from jittering
 		frontRight.ConfigureVehicleSubsteps(5f, 12, 15);
 		frontLeft.ConfigureVehicleSubsteps(5f, 12, 15);
@@ -59,12 +62,15 @@ public class VehicleShea : VehicleBase
 
 	public override void BoostStart()
 	{
-		//all you
+        //car goes faster
+        //set maxtorque higher??
+        maxTorque = (maxTorque * maxTorqueIncrement);
 	}
 
 	public override void BoostStop()
 	{
-		//all you
+        //maxtorque back to normal
+        maxTorque = maxTorqueStart;
 	}
 
 	public override void ActionStart()
@@ -76,4 +82,5 @@ public class VehicleShea : VehicleBase
 	{
 		//all you
 	}
+
 }

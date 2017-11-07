@@ -5,17 +5,12 @@ using DG.Tweening;
 
 public class GameManager : MonoBehaviour
 {
-    public Transform sphere;
-
-    private void Update()
+    
+    public void incrementLap()
     {
-        
+        //lap++
+        //Put it on the UI
     }
 
-    [ContextMenu("test")]
-    public void DoTweenTest()
-    {
-        sphere.transform.DOPunchScale(new Vector3(1f, 1f, 1f), 2f);
-    }
 
 }

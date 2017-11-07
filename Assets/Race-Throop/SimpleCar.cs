@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
+[RequireComponent(typeof(Rigidbody))]
 public class SimpleCar : VehicleBase 
 {
 	[SerializeField] WheelCollider frontRight;
@@ -11,6 +12,9 @@ public class SimpleCar : VehicleBase
 	public float maxSteer;
 	public float maxTorque;
 	public float maxBrake;
+    public float downforce;
+
+    private Rigidbody myRigidbody;
 
 	void Start () 
 	{
@@ -19,6 +23,8 @@ public class SimpleCar : VehicleBase
 		frontLeft.ConfigureVehicleSubsteps(5f, 12, 15);
 		backRight.ConfigureVehicleSubsteps(5f, 12, 15);
 		backLeft.ConfigureVehicleSubsteps(5f, 12, 15);
+
+        myRigidbody = GetComponent<Rigidbody>();
 	}
 
 	// finds the corresponding visual wheel
@@ -102,12 +108,18 @@ public class SimpleCar : VehicleBase
 		ApplyLocalPositionToVisuals(backRight);
 	}
 	
-	void Update () 
+	void FixedUpdate () 
 	{
 		Drive ();
+        AddDownForce();
 	}
 
-	public override void BoostStart()
+    private void AddDownForce()
+    {
+       myRigidbody.AddForce(-transform.up * downforce * myRigidbody.velocity.magnitude);
+    }
+
+    public override void BoostStart()
 	{
 		//all you
 	}

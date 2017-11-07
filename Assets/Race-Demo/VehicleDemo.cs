@@ -25,6 +25,8 @@ public class VehicleDemo : VehicleBase
     public GameObject explo;
     private Rigidbody myRigidbody;
 
+    public SpringJoint springJoint;
+
 
 
    public RaycastHit hit;
@@ -52,7 +54,7 @@ public class VehicleDemo : VehicleBase
 		backRight.ConfigureVehicleSubsteps(5f, 12, 15);
 		backLeft.ConfigureVehicleSubsteps(5f, 12, 15);
 
-        
+        myRigidbody = GetComponent<Rigidbody>();
 
       StartCoroutine(Timer());
    }
@@ -109,6 +111,7 @@ public class VehicleDemo : VehicleBase
             DownForce();
         }
         CheckHealth();
+        DrawSpringLine();
 	}
 
 
@@ -210,15 +213,32 @@ void OnTriggerEnter(Collider col) {
 
 	public override void ActionStop()
 	{
+        return;
 		if(isFlying == true)
       {
 
          isFlying = false;
          LR.enabled = false;
          canMove = true;
+            Destroy(springJoint);
+                
 
       }
 	}
+
+    void DrawSpringLine()
+    {
+        if (springJoint != null)
+        {
+            LR.enabled = true;
+            LR.SetPosition(0, myRigidbody.position);
+            LR.SetPosition(1, springJoint.connectedBody.transform.position);
+        }
+        else
+        {
+            LR.enabled = false;
+        }
+    }
 
    public void FindSpot()
    {
@@ -226,26 +246,41 @@ void OnTriggerEnter(Collider col) {
       
       if (Physics.Raycast(baseHarpoon.transform.position, baseHarpoon.transform.forward, out hit, maxDistance, cullingmask))
       {
-         Debug.Log("hooking");
-         isFlying = true;
-         loc = hit.point;
-         canMove = false;
-         LR.enabled = true;
-         LR.SetPosition(1, loc);
-      }
+            if (hit.rigidbody != null)
+            {
+                Debug.Log("hooking");
+                 isFlying = true;
+                 loc = hit.point;
+                 canMove = false;
+                 LR.enabled = true;
+                 LR.SetPosition(1, loc);
+
+
+                springJoint = gameObject.AddComponent<SpringJoint>();
+                
+                springJoint.connectedBody = hit.rigidbody;
+                springJoint.spring = 1000f;
+                springJoint.maxDistance = 10f;
+                springJoint.minDistance = 2f;
+            }
+
+
+        }
 
    }
 
    public void Flying()
    {
 
-      transform.position = Vector3.Lerp(transform.position, loc, speed * Time.deltaTime / Vector3.Distance(transform.position, loc));
-      LR.SetPosition(0, car.position);
+
+
+//      transform.position = Vector3.Lerp(transform.position, loc, speed * Time.deltaTime / Vector3.Distance(transform.position, loc));
+//      LR.SetPosition(0, car.position);
 
       if (Vector3.Distance(transform.position, loc) < 0.5f)
       {
          isFlying = false;
-         LR.enabled = false;
+        // LR.enabled = false;
          canMove = true;
       }
    }

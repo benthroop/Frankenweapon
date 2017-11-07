@@ -70,7 +70,6 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4697126812733442}
-  - component: {fileID: 114571459416061018}
   m_Layer: 0
   m_Name: InformationDisplay
   m_TagString: Untagged
@@ -104,23 +103,6 @@ GameObject:
   - component: {fileID: 146924070454936044}
   m_Layer: 0
   m_Name: Front_right_Wheel
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!1 &1188823910714870
-GameObject:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  serializedVersion: 5
-  m_Component:
-  - component: {fileID: 224574977262102586}
-  - component: {fileID: 222076260152897718}
-  - component: {fileID: 114251007342099940}
-  m_Layer: 0
-  m_Name: Text
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -240,6 +222,7 @@ GameObject:
   - component: {fileID: 54830273216460944}
   - component: {fileID: 114038791754929400}
   - component: {fileID: 114697333920222274}
+  - component: {fileID: 114314062845734850}
   m_Layer: 0
   m_Name: Ciano-Car 1
   m_TagString: Untagged
@@ -358,7 +341,7 @@ GameObject:
   - component: {fileID: 222415455137100016}
   - component: {fileID: 114215743858743714}
   m_Layer: 0
-  m_Name: Text
+  m_Name: LAP
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -661,8 +644,8 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1090337790656486}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.8, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: 0.00000016246, y: -0.7881, z: 0.000000021773}
+  m_LocalScale: {x: 3.1455474, y: 3.1455452, z: 3.1455452}
   m_Children:
   - {fileID: 224712567643583412}
   m_Father: {fileID: 4865022954246772}
@@ -715,7 +698,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1402364749016482}
   m_LocalRotation: {x: -0, y: -0.6584711, z: -0, w: 0.75260603}
-  m_LocalPosition: {x: 13.66603, y: -1.23, z: -24.293808}
+  m_LocalPosition: {x: 9.6, y: 4.2, z: 0.1}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4697126812733442}
@@ -1265,7 +1248,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0, g: 0, b: 0, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -1288,41 +1271,31 @@ MonoBehaviour:
   m_Text: 'Lap #
 
 '
---- !u!114 &114251007342099940
+--- !u!114 &114314062845734850
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1188823910714870}
+  m_GameObject: {fileID: 1402364749016482}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 708705254, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+  m_Script: {fileID: 11500000, guid: 404dca7c5cf270242861bf8e1d5b092c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_Material: {fileID: 0}
-  m_Color: {r: 0, g: 0, b: 0, a: 1}
-  m_RaycastTarget: 1
-  m_OnCullStateChanged:
-    m_PersistentCalls:
-      m_Calls: []
-    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
-      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_FontData:
-    m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
-    m_FontSize: 14
-    m_FontStyle: 0
-    m_BestFit: 0
-    m_MinSize: 10
-    m_MaxSize: 40
-    m_Alignment: 1
-    m_AlignByGeometry: 0
-    m_RichText: 1
-    m_HorizontalOverflow: 0
-    m_VerticalOverflow: 0
-    m_LineSpacing: 1
-  m_Text: 'Place #
-
-'
+  RotationCore: {fileID: 1090337790656486}
+  CarPoints: 0
+  PreviousCheckPoint: {fileID: 0}
+  PointsOfPrevious: 0
+  NextCheckPoint: {fileID: 0}
+  DistanceBetween: 0
+  CheckPointPoints: 0
+  LapNumberInt: 0
+  LapNumberText: {fileID: 114215743858743714}
+  PlaceDisplayCore: {fileID: 114391096081107890}
+  PlaceDisplayFirst: {fileID: 21300000, guid: fea4ce53ea5295c4785e459070c08a3c, type: 3}
+  PlaceDisplaySecond: {fileID: 21300000, guid: 7f150cf143793e64f8f3e8a810fa6ef6, type: 3}
+  PlaceDisplayThird: {fileID: 21300000, guid: bff938f1efa7dcf408ff6271e6ad1964, type: 3}
+  MainCamera: {fileID: 0}
 --- !u!114 &114391096081107890
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1342,7 +1315,7 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_Sprite: {fileID: 0}
+  m_Sprite: {fileID: 21300000, guid: fea4ce53ea5295c4785e459070c08a3c, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -1371,23 +1344,6 @@ MonoBehaviour:
   m_FallbackScreenDPI: 96
   m_DefaultSpriteDPI: 96
   m_DynamicPixelsPerUnit: 1
---- !u!114 &114571459416061018
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1090337790656486}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 404dca7c5cf270242861bf8e1d5b092c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  ParentCar: {fileID: 1402364749016482}
-  LapNumberInt: 0
-  LapNumberText: {fileID: 114215743858743714}
-  PlaceDisplayFirst: {fileID: 0}
-  PlaceDisplaySecond: {fileID: 0}
-  MainCamera: {fileID: 0}
 --- !u!114 &114697333920222274
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1551,7 +1507,7 @@ ParticleSystem:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1487260825409990}
   serializedVersion: 5
-  lengthInSec: 5
+  lengthInSec: 2
   simulationSpeed: 1
   looping: 1
   prewarm: 0
@@ -1603,14 +1559,14 @@ ParticleSystem:
   moveWithTransform: 1
   moveWithCustomTransform: {fileID: 0}
   scalingMode: 1
-  randomSeed: -1055246580
+  randomSeed: 1862275121
   InitialModule:
     serializedVersion: 3
     enabled: 1
     startLifetime:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 2
+      scalar: 1
       minScalar: 5
       maxCurve:
         serializedVersion: 2
@@ -4858,12 +4814,6 @@ ParticleSystemRenderer:
   m_Mesh2: {fileID: 0}
   m_Mesh3: {fileID: 0}
   m_MaskInteraction: 0
---- !u!222 &222076260152897718
-CanvasRenderer:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1188823910714870}
 --- !u!222 &222415455137100016
 CanvasRenderer:
   m_ObjectHideFlags: 1
@@ -4907,7 +4857,6 @@ RectTransform:
   m_LocalScale: {x: 2.868631, y: 2.8686311, z: 2.8686311}
   m_Children:
   - {fileID: 224852435472957680}
-  - {fileID: 224574977262102586}
   m_Father: {fileID: 224712567643583412}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -4916,38 +4865,20 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 226}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!224 &224574977262102586
-RectTransform:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1188823910714870}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 224306874774024498}
-  m_RootOrder: 1
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 31.7}
-  m_SizeDelta: {x: 160, y: 30}
-  m_Pivot: {x: 0.5, y: 0.5}
 --- !u!224 &224712567643583412
 RectTransform:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1277940894130512}
-  m_LocalRotation: {x: 0.15622841, y: 0.90097827, z: 0.33589962, w: 0.22583681}
+  m_LocalRotation: {x: 0, y: 1, z: 0, w: 0}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0.007021432, y: 0.0070214313, z: 0.007021432}
   m_Children:
   - {fileID: 224306874774024498}
   m_Father: {fileID: 4697126812733442}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
@@ -4961,13 +4892,13 @@ RectTransform:
   m_GameObject: {fileID: 1739284764522040}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 2.5175605, y: 2.517561, z: 2.517561}
   m_Children: []
   m_Father: {fileID: 224306874774024498}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: -10.5}
+  m_AnchoredPosition: {x: 0, y: 13.9}
   m_SizeDelta: {x: 160, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}

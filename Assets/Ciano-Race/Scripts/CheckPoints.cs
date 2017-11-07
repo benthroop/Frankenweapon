@@ -4,13 +4,27 @@ using UnityEngine;
 
 public class CheckPoints : MonoBehaviour {
 
-	// Use this for initialization
-	void Start () {
-		
-	}
-	
+	public float PointValue;
+	public GameObject Self;
+	public GameObject Next;
+
+	public float DistanceBetween;
+
 	// Update is called once per frame
-	void Update () {
-		
+	void Start () {
+		Self = this.gameObject;
+		DistanceBetween = Vector3.Distance (Next.transform.position, this.gameObject.transform.position);
+	}
+
+	void OnTriggerEnter(Collider col) {
+		if (col.gameObject.GetComponent<InformationDisplay>() != null) {
+			InformationDisplay CarDetails = col.gameObject.GetComponent<InformationDisplay> ();
+			CarDetails.PreviousCheckPoint = this.gameObject;
+			CarDetails.NextCheckPoint = Next;
+			CarDetails.PointsOfPrevious = PointValue;
+			CarDetails.DistanceBetween = DistanceBetween;
+
+			Debug.Log ("Check");
+		}
 	}
 }

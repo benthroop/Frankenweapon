@@ -9,15 +9,16 @@ public class InformationDisplay : MonoBehaviour {
 	public float CarPoints;
 
 	public GameObject PreviousCheckPoint;
+	public float PointsOfPrevious;
 	public GameObject NextCheckPoint;
+	public float DistanceBetween;
 
 	public float CheckPointPoints;
 
 	public int LapNumberInt;
 	public Text LapNumberText;
-	public Sprite PlaceDisplayFirst;
-	public Sprite PlaceDisplaySecond;
-	public Sprite PlaceDisplayThird;
+
+	public Image PlaceDisplayCore;
 
 	public GameObject MainCamera;
 
@@ -32,11 +33,15 @@ public class InformationDisplay : MonoBehaviour {
 		LapNumberText.text = LapNumberInt.ToString();
 
 		LookAtCamera ();
-
+		DistanceCalculator();
 	}
 
 	void LookAtCamera() {
 		RotationCore.transform.LookAt(MainCamera.transform);
 	}
 
+	void DistanceCalculator() {
+		float DistancePercentage = (Vector3.Distance (NextCheckPoint.transform.position, this.gameObject.transform.position)/DistanceBetween);
+		CheckPointPoints = PointsOfPrevious + (10*DistancePercentage);
+	}
 }

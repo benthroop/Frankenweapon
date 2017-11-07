@@ -13,8 +13,26 @@ public class VehicleEstabrook: VehicleBase
 
     public GameObject gun;
 
+    [SerializeField]
+    bool isRacing;
+    [SerializeField] Transform racePos, testPos;
+
+    public int playerNumber;
+
+    bool hasChecked;
+
+    int count = 0;
+    public int score = 0;
 	void Start () 
 	{
+        if(isRacing)
+        {
+            transform.position = racePos.position;
+        }
+        else
+        {
+            transform.position = testPos.position;
+        }
 		//this is to keep the wheels from jittering
 		frontRight.ConfigureVehicleSubsteps(5f, 12, 15);
 		frontLeft.ConfigureVehicleSubsteps(5f, 12, 15);
@@ -49,11 +67,13 @@ public class VehicleEstabrook: VehicleBase
     void FixedUpdate () 
 	{
 		Drive ();
-
-        if (transform.position.x < -29) transform.position = new Vector3(29, transform.position.y, transform.position.z);
-        if (transform.position.x > 29) transform.position = new Vector3(-29, transform.position.y, transform.position.z);
-        if (transform.position.z < -29) transform.position = new Vector3(transform.position.x, transform.position.y, 29);
-        if (transform.position.z > 29) transform.position = new Vector3(transform.position.x, transform.position.y, -29);
+        if (!isRacing)
+        {
+            if (transform.position.x < -29) transform.position = new Vector3(29, transform.position.y, transform.position.z);
+            if (transform.position.x > 29) transform.position = new Vector3(-29, transform.position.y, transform.position.z);
+            if (transform.position.z < -29) transform.position = new Vector3(transform.position.x, transform.position.y, 29);
+            if (transform.position.z > 29) transform.position = new Vector3(transform.position.x, transform.position.y, -29);
+        }
     }
 
     public void ApplyLocalPositionToVisuals(WheelCollider collider)
@@ -144,4 +164,34 @@ public class VehicleEstabrook: VehicleBase
 	{
 		//all you
 	}
+
+    void OnTriggerEnter(Collider col)
+    {
+        if (col.tag == "Lap")
+        {
+            //Debug.Log("has checked");
+            if (hasChecked)
+            {
+                RaceManager.instance.passLap(playerNumber, count);
+                count++;
+                hasChecked = false;
+
+            }
+
+        }
+        else if (col.tag == "Checker")
+        {
+            hasChecked = true;
+        }else if(col.tag == "Point")
+        {
+            string previous = "";
+            if (previous != col.name)
+            {
+                score++;
+                previous = col.name;
+
+            }
+
+        }
+    }
 }

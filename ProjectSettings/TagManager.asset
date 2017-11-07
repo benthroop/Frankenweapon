@@ -8,6 +8,9 @@ TagManager:
   - Glow
   - Rocket
   - Wood
+  - Lap
+  - Checker
+  - Point
   layers:
   - Default
   - TransparentFX

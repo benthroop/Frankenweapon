@@ -17,6 +17,7 @@ public class VehicleReynolds : VehicleBase
 
     public float maxSteer;
 	public float maxTorque;
+    public float downForce;
 
     public int playerNum;
 	void Start () 
@@ -38,9 +39,21 @@ public class VehicleReynolds : VehicleBase
 		backLeft.motorTorque = throttleControlValue * maxTorque;
 		backRight.motorTorque = throttleControlValue * maxTorque;
 
-		//notice that the wheel visuals do NOT turn. You might want to make that work if it's visible to the player.
-		//there's actually a bit about that in the Unity Wheelcollider tutorial: https://docs.unity3d.com/Manual/WheelColliderTutorial.html
-	}
+        if (Vector3.Dot(transform.up, Vector3.up) > 0)
+        {
+            AddDownForce();
+        }
+
+       
+        //notice that the wheel visuals do NOT turn. You might want to make that work if it's visible to the player.
+        //there's actually a bit about that in the Unity Wheelcollider tutorial: https://docs.unity3d.com/Manual/WheelColliderTutorial.html
+    }
+
+    private void AddDownForce()
+    {
+        GetComponent<Rigidbody>().AddForce(-transform.up * downForce * GetComponent<Rigidbody>().velocity.magnitude);
+    }
+
     public void ApplyLocalPositionToVisuals(WheelCollider collider)
     {
         Transform visualWheel;

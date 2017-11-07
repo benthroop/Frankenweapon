@@ -8,7 +8,9 @@ public class VehicleDemo : VehicleBase
 	[SerializeField] WheelCollider frontLeft;
 	[SerializeField] WheelCollider backRight;
 	[SerializeField] WheelCollider backLeft;
-   public Transform flWheel;
+    [SerializeField] private WheelCollider[] m_WheelColliders = new WheelCollider[4];
+    public float m_Downforce = 100f;
+    public Transform flWheel;
    public Transform frWheel;
    public Transform blWheel;
    public Transform brWheel;
@@ -19,6 +21,9 @@ public class VehicleDemo : VehicleBase
    public bool canBoost = true;
    public bool canMove = false;
    public Text countDown;
+   public int carHealth = 100;
+    public GameObject explo;
+    private Rigidbody myRigidbody;
 
 
 
@@ -46,6 +51,8 @@ public class VehicleDemo : VehicleBase
 		frontLeft.ConfigureVehicleSubsteps(5f, 12, 15);
 		backRight.ConfigureVehicleSubsteps(5f, 12, 15);
 		backLeft.ConfigureVehicleSubsteps(5f, 12, 15);
+
+        
 
       StartCoroutine(Timer());
    }
@@ -97,7 +104,49 @@ public class VehicleDemo : VehicleBase
 	void Update () 
 	{
 		Drive ();
+        if (IsGrounded())
+        {
+            DownForce();
+        }
+        CheckHealth();
 	}
+
+
+    void CheckHealth()
+    {
+        if(carHealth <= 0)
+        {
+            GameObject exploTemp = Instantiate(explo, gameObject.transform.position, Quaternion.identity);
+            Destroy(gameObject);
+            Destroy(exploTemp, 3f);
+        }
+    }
+
+    void DownForce()
+    {
+            m_WheelColliders[0].attachedRigidbody.AddForce(-transform.up * m_Downforce * m_WheelColliders[0].attachedRigidbody.velocity.magnitude);
+        
+    }
+
+    private bool IsGrounded()
+    {
+        WheelHit leftHit;
+        WheelHit rightHit;
+        bool result = false;
+
+
+        if (frontLeft.GetGroundHit(out leftHit))
+        {
+            result = true;
+        }
+        if(frontRight.GetGroundHit(out rightHit))
+        {
+            result = true;
+        }
+
+        return result;
+    }
+
 
 	public override void BoostStart()
 	{
@@ -122,7 +171,15 @@ void OnTriggerEnter(Collider col) {
          Destroy(impactTemp, 3f);
       }
 
-   }
+        if (col.tag == "Bumper")
+        {
+            ParticleSystem impactTemp = Instantiate(impactPart, col.transform.position, col.transform.rotation);
+            Destroy(impactTemp, 3f);
+            carHealth = carHealth - 20;
+            Debug.Log("Hit");
+        }
+
+    }
 
 	public override void BoostStop()
 	{

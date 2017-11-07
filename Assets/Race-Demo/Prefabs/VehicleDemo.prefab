@@ -146,6 +146,7 @@ GameObject:
   - component: {fileID: 114130405528031274}
   - component: {fileID: 114794189305844574}
   - component: {fileID: 120743072734740422}
+  - component: {fileID: 65973582696584152}
   m_Layer: 0
   m_Name: VehicleDemo
   m_TagString: vehicle
@@ -472,6 +473,22 @@ GameObject:
   m_Name: Cylinder (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!1 &1286726012528002
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 4288043804622410}
+  - component: {fileID: 65679571451855492}
+  m_Layer: 0
+  m_Name: Bumper
+  m_TagString: Bumper
+  m_Icon: {fileID: 7250588514170254948, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -1455,9 +1472,10 @@ Transform:
   - {fileID: 4027754126856212}
   - {fileID: 4482962848818662}
   - {fileID: 4245209536550172}
+  - {fileID: 4288043804622410}
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: -82.367004, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: -176.003, z: 0}
 --- !u!4 &4170523316760624
 Transform:
   m_ObjectHideFlags: 1
@@ -1603,6 +1621,19 @@ Transform:
   m_Father: {fileID: 4482962848818662}
   m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: -32.919003, y: 0, z: 0}
+--- !u!4 &4288043804622410
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1286726012528002}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -0, y: 0, z: 2.344}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 4165516337314928}
+  m_RootOrder: 4
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4291914211155888
 Transform:
   m_ObjectHideFlags: 1
@@ -1675,7 +1706,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1177092473678024}
   m_LocalRotation: {x: 0.30221218, y: -0.0000012814999, z: 0.040502217, w: 0.9523799}
-  m_LocalPosition: {x: 0.3429998, y: -0.05700001, z: 1.2100005}
+  m_LocalPosition: {x: 0.513, y: -0.044, z: 1.214}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4482962848818662}
@@ -2076,7 +2107,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1757930787400896}
   m_LocalRotation: {x: 0.30221218, y: -0.0000012814999, z: 0.040502217, w: 0.9523799}
-  m_LocalPosition: {x: -0.5460002, y: -0.05700001, z: 1.2249998}
+  m_LocalPosition: {x: -0.698, y: -0.069, z: 1.221}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4482962848818662}
@@ -2129,7 +2160,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1207111034789656}
   m_LocalRotation: {x: -0.5321728, y: 0.46560937, z: 0.46560937, w: 0.5321728}
-  m_LocalPosition: {x: 1.174, y: -0.203, z: 1.026}
+  m_LocalPosition: {x: 0.886, y: -0.203, z: 0.987}
   m_LocalScale: {x: 0.99999994, y: 0.99999976, z: 0.9999998}
   m_Children: []
   m_Father: {fileID: 4482962848818662}
@@ -4657,6 +4688,18 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!65 &65679571451855492
+BoxCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1286726012528002}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1.4158976, y: 0.80532277, z: 0.07055187}
+  m_Center: {x: -0.016586, y: -0.09733862, z: -0.46472648}
 --- !u!65 &65723664143386176
 BoxCollider:
   m_ObjectHideFlags: 1
@@ -4681,6 +4724,18 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!65 &65973582696584152
+BoxCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1064002622324096}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1.9959978, y: 1, z: 3.1116667}
+  m_Center: {x: 0.046860516, y: 0, z: 0.25801885}
 --- !u!108 &108418545081700758
 Light:
   m_ObjectHideFlags: 1
@@ -5056,6 +5111,12 @@ MonoBehaviour:
   frontLeft: {fileID: 146743411841647838}
   backRight: {fileID: 146024598260669014}
   backLeft: {fileID: 146593568082683756}
+  m_WheelColliders:
+  - {fileID: 146593568082683756}
+  - {fileID: 146024598260669014}
+  - {fileID: 146922105114020362}
+  - {fileID: 146743411841647838}
+  m_Downforce: 500
   flWheel: {fileID: 4530301452295554}
   frWheel: {fileID: 4696451466517518}
   blWheel: {fileID: 4211246508005930}
@@ -5068,6 +5129,8 @@ MonoBehaviour:
   canBoost: 1
   canMove: 0
   countDown: {fileID: 0}
+  carHealth: 100
+  explo: {fileID: 100000, guid: 33e699e7f450bcd4b93af87907df6869, type: 2}
   cullingmask:
     serializedVersion: 2
     m_Bits: 4294967295
@@ -5196,14 +5259,14 @@ WheelCollider:
   m_ForwardFriction:
     m_ExtremumSlip: 0.2
     m_ExtremumValue: 1
-    m_AsymptoteSlip: 0.8
-    m_AsymptoteValue: 0.5
+    m_AsymptoteSlip: 5
+    m_AsymptoteValue: 7
     m_Stiffness: 1
   m_SidewaysFriction:
     m_ExtremumSlip: 0.2
     m_ExtremumValue: 1
     m_AsymptoteSlip: 0.5
-    m_AsymptoteValue: 0.75
+    m_AsymptoteValue: 1
     m_Stiffness: 1
   m_Enabled: 1
 --- !u!146 &146593568082683756
@@ -5225,14 +5288,14 @@ WheelCollider:
   m_ForwardFriction:
     m_ExtremumSlip: 0.2
     m_ExtremumValue: 1
-    m_AsymptoteSlip: 0.8
-    m_AsymptoteValue: 0.5
+    m_AsymptoteSlip: 5
+    m_AsymptoteValue: 7
     m_Stiffness: 1
   m_SidewaysFriction:
     m_ExtremumSlip: 0.2
     m_ExtremumValue: 1
     m_AsymptoteSlip: 0.5
-    m_AsymptoteValue: 0.75
+    m_AsymptoteValue: 1
     m_Stiffness: 1
   m_Enabled: 1
 --- !u!146 &146743411841647838
@@ -5254,14 +5317,14 @@ WheelCollider:
   m_ForwardFriction:
     m_ExtremumSlip: 0.2
     m_ExtremumValue: 1
-    m_AsymptoteSlip: 0.8
-    m_AsymptoteValue: 0.5
+    m_AsymptoteSlip: 5
+    m_AsymptoteValue: 7
     m_Stiffness: 1
   m_SidewaysFriction:
     m_ExtremumSlip: 0.2
     m_ExtremumValue: 1
     m_AsymptoteSlip: 0.5
-    m_AsymptoteValue: 0.75
+    m_AsymptoteValue: 1
     m_Stiffness: 1
   m_Enabled: 1
 --- !u!146 &146922105114020362
@@ -5283,14 +5346,14 @@ WheelCollider:
   m_ForwardFriction:
     m_ExtremumSlip: 0.2
     m_ExtremumValue: 1
-    m_AsymptoteSlip: 0.8
-    m_AsymptoteValue: 0.5
+    m_AsymptoteSlip: 5
+    m_AsymptoteValue: 7
     m_Stiffness: 1
   m_SidewaysFriction:
     m_ExtremumSlip: 0.2
     m_ExtremumValue: 1
     m_AsymptoteSlip: 0.5
-    m_AsymptoteValue: 0.75
+    m_AsymptoteValue: 1
     m_Stiffness: 1
   m_Enabled: 1
 --- !u!198 &198063793000859270
@@ -5352,7 +5415,7 @@ ParticleSystem:
   moveWithTransform: 1
   moveWithCustomTransform: {fileID: 0}
   scalingMode: 2
-  randomSeed: -497936197
+  randomSeed: 1821331105
   InitialModule:
     serializedVersion: 3
     enabled: 1
@@ -18166,7 +18229,7 @@ ParticleSystem:
   moveWithTransform: 1
   moveWithCustomTransform: {fileID: 0}
   scalingMode: 2
-  randomSeed: -1619259595
+  randomSeed: 231668771
   InitialModule:
     serializedVersion: 3
     enabled: 1
@@ -18294,8 +18357,8 @@ ParticleSystem:
     startSize:
       serializedVersion: 2
       minMaxState: 3
-      scalar: 4
-      minScalar: 2
+      scalar: 2
+      minScalar: 1
       maxCurve:
         serializedVersion: 2
         m_Curve:

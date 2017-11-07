@@ -111,8 +111,36 @@ public class SimpleCar : VehicleBase
 	void FixedUpdate () 
 	{
 		Drive ();
-        AddDownForce();
-	}
+
+        if (IsGrounded())
+        {
+            Debug.Log("DOWNFORCE: ON");
+            AddDownForce();
+        }
+        else
+        {
+            Debug.Log("DOWNFORCE: OFF");
+        }
+    }
+
+    private bool IsGrounded()
+    {
+        WheelHit leftHit;
+        WheelHit rightHit;
+        bool result = false;
+
+        if (frontLeft.GetGroundHit(out leftHit))
+        {
+            result = true;
+        }
+
+        if (frontRight.GetGroundHit(out rightHit))
+        {
+            result = true;
+        }
+
+        return result;
+    }
 
     private void AddDownForce()
     {
@@ -131,11 +159,16 @@ public class SimpleCar : VehicleBase
 
 	public override void ActionStart()
 	{
-		//all you
-	}
+        //emergency brake on
+        backLeft.brakeTorque = 10000f;
+        backRight.brakeTorque = 10000f;
+    }
 
 	public override void ActionStop()
 	{
-		//all you
-	}
+        //emergency brake off
+        backLeft.brakeTorque = 0f;
+        backRight.brakeTorque = 0f;
+
+    }
 }

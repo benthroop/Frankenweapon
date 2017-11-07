@@ -364,7 +364,7 @@ Prefab:
     - target: {fileID: 114000011313998144, guid: 1e822fbb780b30f4384e408be557e8ad,
         type: 2}
       propertyPath: maxTorque
-      value: 100
+      value: 200
       objectReference: {fileID: 0}
     - target: {fileID: 114000011313998144, guid: 1e822fbb780b30f4384e408be557e8ad,
         type: 2}
@@ -403,6 +403,46 @@ Prefab:
     - target: {fileID: 146000010062207238, guid: 1e822fbb780b30f4384e408be557e8ad,
         type: 2}
       propertyPath: m_SidewaysFriction.m_Stiffness
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 146000010451434082, guid: 1e822fbb780b30f4384e408be557e8ad,
+        type: 2}
+      propertyPath: m_SidewaysFriction.m_ExtremumSlip
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 146000010486055952, guid: 1e822fbb780b30f4384e408be557e8ad,
+        type: 2}
+      propertyPath: m_SidewaysFriction.m_ExtremumSlip
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 146000010062207238, guid: 1e822fbb780b30f4384e408be557e8ad,
+        type: 2}
+      propertyPath: m_SidewaysFriction.m_ExtremumSlip
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 146000010194086486, guid: 1e822fbb780b30f4384e408be557e8ad,
+        type: 2}
+      propertyPath: m_SidewaysFriction.m_ExtremumSlip
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 146000010451434082, guid: 1e822fbb780b30f4384e408be557e8ad,
+        type: 2}
+      propertyPath: m_SidewaysFriction.m_AsymptoteSlip
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 146000010486055952, guid: 1e822fbb780b30f4384e408be557e8ad,
+        type: 2}
+      propertyPath: m_SidewaysFriction.m_AsymptoteSlip
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 146000010062207238, guid: 1e822fbb780b30f4384e408be557e8ad,
+        type: 2}
+      propertyPath: m_SidewaysFriction.m_AsymptoteSlip
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 146000010194086486, guid: 1e822fbb780b30f4384e408be557e8ad,
+        type: 2}
+      propertyPath: m_SidewaysFriction.m_AsymptoteSlip
       value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []

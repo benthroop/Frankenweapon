@@ -7,9 +7,13 @@ public class VehicleCiano : VehicleBase {
 		[SerializeField] WheelCollider frontLeft;
 		[SerializeField] WheelCollider backRight;
 		[SerializeField] WheelCollider backLeft;
-
+		
 		public float maxSteer;
-		public float maxTorque;
+
+		public float BaseTorque;
+		public float TorqueMultiplier;
+		public float CurrentTorque;
+
 		public float maxBrake;
 
 		void Start () 
@@ -19,6 +23,7 @@ public class VehicleCiano : VehicleBase {
 			frontLeft.ConfigureVehicleSubsteps(5f, 12, 15);
 			backRight.ConfigureVehicleSubsteps(5f, 12, 15);
 			backLeft.ConfigureVehicleSubsteps(5f, 12, 15);
+			CurrentTorque = BaseTorque;
 		}
 
 		// finds the corresponding visual wheel
@@ -55,8 +60,8 @@ public class VehicleCiano : VehicleBase {
 					frontLeft.brakeTorque = 0f;
 					frontRight.brakeTorque = 0f;
 
-					backLeft.motorTorque = throttleControlValue * maxTorque;
-					backRight.motorTorque = throttleControlValue * maxTorque;
+				backLeft.motorTorque = throttleControlValue * CurrentTorque;
+				backRight.motorTorque = throttleControlValue * CurrentTorque;
 				}
 				//moving forward
 				else
@@ -75,8 +80,8 @@ public class VehicleCiano : VehicleBase {
 					frontLeft.brakeTorque = 0f;
 					frontRight.brakeTorque = 0f;
 
-					backLeft.motorTorque = throttleControlValue * maxTorque;
-					backRight.motorTorque = throttleControlValue * maxTorque;
+					backLeft.motorTorque = throttleControlValue * CurrentTorque;
+					backRight.motorTorque = throttleControlValue * CurrentTorque;
 				} else {
 					backLeft.brakeTorque = maxBrake * Mathf.Abs(throttleControlValue);
 					backRight.brakeTorque = maxBrake * Mathf.Abs(throttleControlValue); ;
@@ -99,11 +104,11 @@ public class VehicleCiano : VehicleBase {
 		}
 
 		public override void BoostStart(){
-			//all you
+			CurrentTorque = BaseTorque * TorqueMultiplier;
 		}
 
 		public override void BoostStop(){
-			//all you
+			CurrentTorque = BaseTorque;
 		}
 
 		public override void ActionStart(){

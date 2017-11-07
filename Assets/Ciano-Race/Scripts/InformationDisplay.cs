@@ -6,6 +6,8 @@ using UnityEngine.UI;
 public class InformationDisplay : MonoBehaviour {
 	public GameObject RotationCore;
 
+	public int MaxLap;
+
 	public float CarPoints;
 
 	public GameObject PreviousCheckPoint;
@@ -20,6 +22,8 @@ public class InformationDisplay : MonoBehaviour {
 
 	public Image PlaceDisplayCore;
 
+	public GameObject VictorySpawn;
+
 	public GameObject MainCamera;
 
 	void Start () {
@@ -28,9 +32,14 @@ public class InformationDisplay : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+		if (LapNumberInt >= 5) {
+			CarPoints = CarPoints + 40;
+			transform.position = VictorySpawn.transform.position;
+		}
+
 		CarPoints = (LapNumberInt * 100) + (CheckPointPoints);
 
-		LapNumberText.text = LapNumberInt.ToString();
+		LapNumberText.text = LapNumberInt.ToString() + "/" + MaxLap.ToString();
 
 		LookAtCamera ();
 		DistanceCalculator();
@@ -41,7 +50,7 @@ public class InformationDisplay : MonoBehaviour {
 	}
 
 	void DistanceCalculator() {
-		float DistancePercentage = (Vector3.Distance (NextCheckPoint.transform.position, this.gameObject.transform.position)/DistanceBetween);
+		float DistancePercentage = ((DistanceBetween-(Vector3.Distance (NextCheckPoint.transform.position, this.gameObject.transform.position)))/DistanceBetween);
 		CheckPointPoints = PointsOfPrevious + (10*DistancePercentage);
 	}
 }

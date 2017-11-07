@@ -3,8 +3,6 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class RacingRuleCiano : MonoBehaviour {
-
-	public int CurrentLap;
 	public GameObject FirstPlace;
 	public GameObject SecondPlace;
 	public GameObject ThirdPlace;
@@ -15,6 +13,10 @@ public class RacingRuleCiano : MonoBehaviour {
 	public Sprite PlaceDisplaySecond;
 	public Sprite PlaceDisplayThird;
 	public Sprite PlaceDisplayNone;
+
+	public GameObject FirstPlaceSpawn;
+	public GameObject SecondPlaceSpawn;
+	public GameObject ThirdPlaceSpawn;
 
 	void Start () {
 		foreach (GameObject Racer in RacersList) {
@@ -41,18 +43,25 @@ public class RacingRuleCiano : MonoBehaviour {
 				SecondPlace = FirstPlace;
 				FirstPlace = Racer;
 				FirstPlaceInt = RacerDetails.CarPoints;
+				RacerDetails.VictorySpawn = FirstPlaceSpawn;
+
 				RacerDetails.PlaceDisplayCore.sprite = PlaceDisplayFirst;
 			} else if (RacerDetails.CarPoints >= SecondPlaceInt && RacerDetails.CarPoints < FirstPlaceInt) {
 				ThirdPlace = SecondPlace;
 				SecondPlace = Racer;
 				SecondPlaceInt = RacerDetails.CarPoints;
 				RacerDetails.PlaceDisplayCore.sprite = PlaceDisplaySecond;
-			} else if (RacerDetails.CarPoints >= ThirdPlaceInt && RacerDetails.CarPoints < SecondPlaceInt) {
+				RacerDetails.VictorySpawn = SecondPlaceSpawn;
+
+			} else if (RacerDetails.CarPoints >= ThirdPlaceInt && RacerDetails.CarPoints < SecondPlaceInt && RacersList.Count >= 3) {
 				ThirdPlace = Racer;
 				ThirdPlaceInt = RacerDetails.CarPoints;
 				RacerDetails.PlaceDisplayCore.sprite = PlaceDisplayThird;
+				RacerDetails.VictorySpawn = ThirdPlaceSpawn;
+
 			} else {
 				RacerDetails.PlaceDisplayCore.sprite = PlaceDisplayNone;
+				RacerDetails.VictorySpawn = null;
 			}
 		}
 	}

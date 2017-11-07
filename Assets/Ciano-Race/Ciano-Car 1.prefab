@@ -697,8 +697,8 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1402364749016482}
-  m_LocalRotation: {x: -0, y: -0.6584711, z: -0, w: 0.75260603}
-  m_LocalPosition: {x: 9.6, y: 4.2, z: 0.1}
+  m_LocalRotation: {x: 0, y: -0.7071068, z: 0, w: 0.7071068}
+  m_LocalPosition: {x: 27.3, y: -1.6, z: -27.4}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4697126812733442}
@@ -708,7 +708,7 @@ Transform:
   - {fileID: 4684607405412226}
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: -82.367004, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: -90, z: 0}
 --- !u!23 &23088302039038320
 MeshRenderer:
   m_ObjectHideFlags: 1
@@ -1234,7 +1234,9 @@ MonoBehaviour:
   backRight: {fileID: 146823890048215356}
   backLeft: {fileID: 146720863274744902}
   maxSteer: 50
-  maxTorque: 1000
+  BaseTorque: 1000
+  TorqueMultiplier: 1.4
+  CurrentTorque: 0
   maxBrake: 5000
 --- !u!114 &114215743858743714
 MonoBehaviour:
@@ -1283,6 +1285,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   RotationCore: {fileID: 1090337790656486}
+  MaxLap: 5
   CarPoints: 0
   PreviousCheckPoint: {fileID: 0}
   PointsOfPrevious: 0
@@ -1292,9 +1295,7 @@ MonoBehaviour:
   LapNumberInt: 0
   LapNumberText: {fileID: 114215743858743714}
   PlaceDisplayCore: {fileID: 114391096081107890}
-  PlaceDisplayFirst: {fileID: 21300000, guid: fea4ce53ea5295c4785e459070c08a3c, type: 3}
-  PlaceDisplaySecond: {fileID: 21300000, guid: 7f150cf143793e64f8f3e8a810fa6ef6, type: 3}
-  PlaceDisplayThird: {fileID: 21300000, guid: bff938f1efa7dcf408ff6271e6ad1964, type: 3}
+  VictorySpawn: {fileID: 0}
   MainCamera: {fileID: 0}
 --- !u!114 &114391096081107890
 MonoBehaviour:
@@ -1559,7 +1560,7 @@ ParticleSystem:
   moveWithTransform: 1
   moveWithCustomTransform: {fileID: 0}
   scalingMode: 1
-  randomSeed: 1862275121
+  randomSeed: -88681720
   InitialModule:
     serializedVersion: 3
     enabled: 1
@@ -1649,7 +1650,7 @@ ParticleSystem:
       serializedVersion: 2
       minMaxState: 0
       minColor: {r: 1, g: 1, b: 1, a: 1}
-      maxColor: {r: 0.47794116, g: 0, b: 0, a: 1}
+      maxColor: {r: 1, g: 0, b: 0, a: 1}
       maxGradient:
         serializedVersion: 2
         key0: {r: 1, g: 1, b: 1, a: 1}
@@ -2119,7 +2120,7 @@ ParticleSystem:
     rateOverTime:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 10
+      scalar: 16
       minScalar: 10
       maxCurve:
         serializedVersion: 2

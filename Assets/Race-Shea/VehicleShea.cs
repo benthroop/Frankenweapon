@@ -13,6 +13,9 @@ public class VehicleShea : VehicleBase
     public int maxTorqueIncrement;
     private float maxTorqueStart;
 
+    private float _originalRotX;
+    private float _originalRotZ;
+
 	void Start () 
 	{
         maxTorqueStart = maxTorque;
@@ -21,7 +24,10 @@ public class VehicleShea : VehicleBase
 		frontLeft.ConfigureVehicleSubsteps(5f, 12, 15);
 		backRight.ConfigureVehicleSubsteps(5f, 12, 15);
 		backLeft.ConfigureVehicleSubsteps(5f, 12, 15);
-	}
+
+        _originalRotX = transform.rotation.x;
+        _originalRotZ = transform.rotation.z;
+    }
 
 	void Drive()
 	{
@@ -58,7 +64,18 @@ public class VehicleShea : VehicleBase
 		Drive ();
         TurnWheels(frontLeft);
         TurnWheels(frontRight);
-	}
+
+        if (Input.GetKeyDown(KeyCode.R))
+        {
+            flipCar();
+        }
+    }
+
+    void flipCar()
+    {
+        transform.Translate(0, 3, 0);
+        transform.rotation = (Quaternion.Euler(new Vector3(_originalRotX, transform.rotation.y, _originalRotZ)));
+    }
 
 	public override void BoostStart()
 	{

@@ -11,6 +11,7 @@ public class VehicleGingello : VehicleBase
 	public float maxSteer;
 	public float maxTorque;
     public float Boost;
+    public float maxBrake;
     public bool Boosting;
 
 
@@ -27,31 +28,77 @@ public class VehicleGingello : VehicleBase
 
 	void Drive()
 	{
-		//turning
-		frontLeft.steerAngle = steeringControlValue * maxSteer;
-		frontRight.steerAngle = steeringControlValue * maxSteer;
-        if (Boosting == false)
-        {
-            //torque
-            backLeft.motorTorque = throttleControlValue * maxTorque;
-            backRight.motorTorque = throttleControlValue * maxTorque;
-            Debug.Log(backRight.motorTorque.ToString());
-            Debug.Log(backLeft.motorTorque.ToString());
-        }
-        if(Boosting == true)
-        {
-            backLeft.motorTorque = throttleControlValue * maxTorque * Boost;
-            backRight.motorTorque = throttleControlValue * maxTorque * Boost;
-            Debug.Log(backRight.motorTorque.ToString());
-            Debug.Log(backLeft.motorTorque.ToString());
+        //turning
+        frontLeft.steerAngle = steeringControlValue * maxSteer;
+        frontRight.steerAngle = steeringControlValue * maxSteer;
 
+        //throttle backward
+        if (throttleControlValue < 0f)
+        {
+            //moving backward
+            if (transform.InverseTransformVector(GetComponent<Rigidbody>().velocity).z < Mathf.Epsilon)
+            {
+                backLeft.brakeTorque = 0f;
+                backRight.brakeTorque = 0f;
+                frontLeft.brakeTorque = 0f;
+                frontRight.brakeTorque = 0f;
+
+                backLeft.motorTorque = throttleControlValue * maxTorque;
+                backRight.motorTorque = throttleControlValue * maxTorque;
+            }
+            //moving forward
+            else
+            {
+                backLeft.brakeTorque = maxBrake * Mathf.Abs(throttleControlValue);
+                backRight.brakeTorque = maxBrake * Mathf.Abs(throttleControlValue);
+                frontLeft.brakeTorque = maxBrake * Mathf.Abs(throttleControlValue);
+                frontRight.brakeTorque = maxBrake * Mathf.Abs(throttleControlValue);
+            }
         }
-        ApplyLocalPositionToVisuals(frontRight);
-        ApplyLocalPositionToVisuals(frontLeft);
-        ApplyLocalPositionToVisuals(backRight);
-        ApplyLocalPositionToVisuals(backLeft);
+        //throttle forward
+        else
+        {
+            //moving forward
+            if (transform.InverseTransformVector(GetComponent<Rigidbody>().velocity).z > Mathf.Epsilon)
+            {
+                if (Boosting == true)
+                {
+                    backLeft.motorTorque = throttleControlValue * maxTorque * Boost;
+                    backRight.motorTorque = throttleControlValue * maxTorque * Boost;
+                    Debug.Log(backRight.motorTorque.ToString());
+                    Debug.Log(backLeft.motorTorque.ToString());
+
+                }
+                else
+                {
+                    backLeft.brakeTorque = 0f;
+                    backRight.brakeTorque = 0f;
+                    frontLeft.brakeTorque = 0f;
+                    frontRight.brakeTorque = 0f;
+
+                    backLeft.motorTorque = throttleControlValue * maxTorque;
+                    backRight.motorTorque = throttleControlValue * maxTorque;
+                }
+            }
+            //moving backward
+            else
+            {
+                backLeft.brakeTorque = maxBrake * Mathf.Abs(throttleControlValue);
+                backRight.brakeTorque = maxBrake * Mathf.Abs(throttleControlValue); 
+                frontLeft.brakeTorque = maxBrake * Mathf.Abs(throttleControlValue);
+                frontRight.brakeTorque = maxBrake * Mathf.Abs(throttleControlValue);
+            }
+        }
+
         //notice that the wheel visuals do NOT turn. You might want to make that work if it's visible to the player.
         //there's actually a bit about that in the Unity Wheelcollider tutorial: https://docs.unity3d.com/Manual/WheelColliderTutorial.html
+
+        ApplyLocalPositionToVisuals(frontRight);
+        ApplyLocalPositionToVisuals(frontLeft);
+        ApplyLocalPositionToVisuals(backLeft);
+        ApplyLocalPositionToVisuals(backRight);
+
+
     }
     public void ApplyLocalPositionToVisuals(WheelCollider collider)
     {

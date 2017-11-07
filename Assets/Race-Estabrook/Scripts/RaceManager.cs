@@ -17,8 +17,9 @@ public class RaceManager : MonoBehaviour {
     [SerializeField]
     List<playerVehicles> players;
     [SerializeField]
-    List<GameObject> mapPoints; 
-    
+    List<GameObject> mapPoints;
+
+    int goal = 3;
     int count = 0;
     bool hasChecked = false;
 
@@ -45,7 +46,7 @@ public class RaceManager : MonoBehaviour {
     public void passLap(int playerNum, int count)
     {
         players[playerNum].laps[count].GetComponent<Image>().color = Color.green;
-        if(players[playerNum].laps.Count == count)
+        if(players[playerNum].vehicle.GetComponent<VehicleEstabrook>().count+1 == goal)
         {
             isWon = true;
             Debug.Log(players[playerNum].vehicle.name + "Has won!");

@@ -139,7 +139,6 @@ GameObject:
   - component: {fileID: 114188549733561858}
   - component: {fileID: 114198100427650922}
   - component: {fileID: 65871214633702252}
-  - component: {fileID: 114052027411895766}
   m_Layer: 31
   m_Name: VehicleEstabrook
   m_TagString: Untagged
@@ -248,6 +247,21 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!1 &1612293961391968
+GameObject:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 4374053900793538}
+  m_Layer: 31
+  m_Name: FirePosition
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
 --- !u!1 &1648651849136582
 GameObject:
   m_ObjectHideFlags: 1
@@ -339,7 +353,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1280675260517492}
   m_LocalRotation: {x: 0, y: 0.7071068, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: -104.3, y: -16.7, z: 11.97}
+  m_LocalPosition: {x: -90.3, y: -16.7, z: 11.97}
   m_LocalScale: {x: 0.45656633, y: 0.45656642, z: 0.45656642}
   m_Children:
   - {fileID: 4615320843342346}
@@ -408,6 +422,19 @@ Transform:
   m_Father: {fileID: 4800316458120894}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!4 &4374053900793538
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1612293961391968}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -0.0164, y: 0.0016, z: -0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 4545366837313710}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4374974477967876
 Transform:
   m_ObjectHideFlags: 1
@@ -441,13 +468,14 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1443871480282424}
-  m_LocalRotation: {x: -0, y: 0.7071068, z: -0, w: 0.7071068}
+  m_LocalRotation: {x: 0, y: 0.7071068, z: 0, w: 0.7071068}
   m_LocalPosition: {x: 0.0693102, y: 1.3767437, z: -2.1324024}
   m_LocalScale: {x: 100.000046, y: 100, z: 100.000084}
-  m_Children: []
+  m_Children:
+  - {fileID: 4374053900793538}
   m_Father: {fileID: 4000210792974200}
   m_RootOrder: 1
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 90, z: 0}
 --- !u!4 &4615320843342346
 Transform:
   m_ObjectHideFlags: 1
@@ -564,13 +592,13 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1967618951572534}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.8, z: 0}
+  m_LocalRotation: {x: 0.23572406, y: -0, z: -0, w: 0.97182006}
+  m_LocalPosition: {x: 0, y: 7, z: -12}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4615320843342346}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 27.269001, y: 0, z: 0}
 --- !u!4 &4992971927252576
 Transform:
   m_ObjectHideFlags: 1
@@ -1181,19 +1209,6 @@ Light:
   m_UseColorTemperature: 0
   m_ShadowRadius: 0
   m_ShadowAngle: 0
---- !u!114 &114052027411895766
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1280675260517492}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b1b714398061afe49ac06b8f803dcfc8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  players: []
-  mapPoints: []
 --- !u!114 &114188549733561858
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1212,10 +1227,16 @@ MonoBehaviour:
   maxSteer: 60
   maxTorque: 500
   gun: {fileID: 1443871480282424}
-  isRacing: 0
+  camera: {fileID: 1967618951572534}
+  bulletPrefab: {fileID: 1519651856529130, guid: 1e8b053183d0577459bc6f6d9a7aa7fe,
+    type: 2}
+  shootPosition: {fileID: 1612293961391968}
+  isRacing: 1
   racePos: {fileID: 0}
   testPos: {fileID: 0}
   playerNumber: 0
+  downForce: 1000
+  count: 0
   score: 0
 --- !u!114 &114198100427650922
 MonoBehaviour:

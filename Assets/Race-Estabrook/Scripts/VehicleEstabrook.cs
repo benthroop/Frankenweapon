@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
-
+[RequireComponent(typeof(Rigidbody))]
 public class VehicleEstabrook: VehicleBase 
 {
 	[SerializeField] WheelCollider frontRight;
@@ -12,19 +12,27 @@ public class VehicleEstabrook: VehicleBase
 	public float maxTorque;
 
     public GameObject gun;
+    
+    public GameObject LookThing;
+
+    public GameObject bulletPrefab;
+    public GameObject shootPosition;
 
     [SerializeField]
     bool isRacing;
     [SerializeField] Transform racePos, testPos;
 
     public int playerNumber;
-
     bool hasChecked;
+    public int downForce;
 
-    int count = 0;
+    private Rigidbody rb;
+
+    public int count = 0;
     public int score = 0;
 	void Start () 
 	{
+        rb = GetComponent<Rigidbody>();
         if(isRacing)
         {
             transform.position = racePos.position;
@@ -60,8 +68,16 @@ public class VehicleEstabrook: VehicleBase
 
     private void Update()
     {
-        FindTarget();
+        //FindTarget();
         //gun.transform.Rotate(Vector3.up * 180);
+        if(Input.GetMouseButtonDown(0))
+        {
+            Shoot();
+        }
+        if(Input.GetKeyDown(KeyCode.R))
+        {
+            transform.rotation = Quaternion.Euler( new Vector3(0, transform.rotation.y, 0));
+        }
     }
 
     void FixedUpdate () 
@@ -77,6 +93,19 @@ public class VehicleEstabrook: VehicleBase
                 if (transform.position.z > 29) transform.position = new Vector3(transform.position.x, transform.position.y, -29);
             }
         }
+
+        
+        gun.transform.rotation = Quaternion.LookRotation(gun.transform.position - LookThing.transform.position, Vector3.up);
+        
+        gun.transform.Rotate(Vector3.up * 90);
+        
+
+        AddDownForce();
+    }
+
+    private void AddDownForce()
+    {
+        rb.AddForce(-transform.up * downForce);
     }
 
     public void ApplyLocalPositionToVisuals(WheelCollider collider)
@@ -167,6 +196,12 @@ public class VehicleEstabrook: VehicleBase
 	{
 		//all you
 	}
+
+    void Shoot()
+    {
+        GameObject bulletInstance = Instantiate(bulletPrefab, shootPosition.transform.position, shootPosition.transform.rotation);
+        bulletInstance.GetComponent<bulletScript>().playerNum = playerNumber;
+    }
 
     void OnTriggerEnter(Collider col)
     {

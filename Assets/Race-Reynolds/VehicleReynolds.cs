@@ -13,9 +13,12 @@ public class VehicleReynolds : VehicleBase
     public GameObject backRightVis;
     public GameObject backLeftVis;
 
+    public GameObject positionTracker;
+
     public float maxSteer;
 	public float maxTorque;
 
+    public int playerNum;
 	void Start () 
 	{
 		//this is to keep the wheels from jittering
@@ -97,4 +100,12 @@ public class VehicleReynolds : VehicleBase
 	{
 		//all you
 	}
+
+    public void OnTriggerEnter(Collider other)
+    {
+        if (other.tag == "Checkpoint")
+        {
+            positionTracker.GetComponent<PositionTracking>().UpdatePosition(playerNum, other.GetComponent<CheckpointScript>().index);
+        }
+    }
 }

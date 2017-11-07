@@ -116,11 +116,16 @@ public class VehicleTully: VehicleBase
 
     public override void ActionStart()
     {
-        //all you
+        //e brake on
+        backLeft.brakeTorque = 10000f;
+        backRight.brakeTorque = 10000f;
+
+
     }
 
     public override void ActionStop()
     {
-        //all you
+        backLeft.brakeTorque = 0f;
+        backRight.brakeTorque = 0f;
     }
 }

@@ -10,8 +10,10 @@ public class VehicleAlter : VehicleBase
 
 	public float maxSteer;
 	public float maxTorque;
+    public bool canBoost = true;
+    public bool canMove = true;
 
-	void Start () 
+    void Start () 
 	{
 		//this is to keep the wheels from jittering
 		frontRight.ConfigureVehicleSubsteps(5f, 12, 15);
@@ -39,7 +41,9 @@ public class VehicleAlter : VehicleBase
 		Drive ();
         VisualSpin(frontLeft);
         VisualSpin(frontRight);
-        
+        VisualSpin(backRight);
+        VisualSpin(backLeft);
+        EBrake();
 	}
 
     void VisualSpin(WheelCollider collider)
@@ -58,23 +62,48 @@ public class VehicleAlter : VehicleBase
     }
 
 
-	public override void BoostStart()
-	{
-		//all you
-	}
 
-	public override void BoostStop()
-	{
-		//all you
-	}
 
-	public override void ActionStart()
-	{
-		//all you
-	}
+    public override void BoostStop()
+    {
+        canBoost = false;
+        StartCoroutine(BoostTimer());
+    }
 
-	public override void ActionStop()
-	{
-		//all you
-	}
+    IEnumerator BoostTimer()
+    {
+
+        yield return new WaitForSeconds(3);
+        canBoost = true;
+    }
+    public override void BoostStart()
+    {
+
+        if (canMove == true)
+        {
+            if (canBoost == true)
+            {
+                Debug.Log("BOOST");
+                gameObject.GetComponent<Rigidbody>().AddForce(transform.forward * 1000, ForceMode.Acceleration);
+            }
+        }
+
+    }
+
+
+    void EBrake()
+    {
+        if(Input.GetKeyDown(KeyCode.LeftShift))
+        {
+            Debug.Log("Ebrake");
+            backLeft.brakeTorque = 100000000f;
+            backRight.brakeTorque = 100000000000f;
+
+        }
+        else
+        {
+            backLeft.brakeTorque = 0f;
+            backRight.brakeTorque = 0f;
+        }
+    }
 }

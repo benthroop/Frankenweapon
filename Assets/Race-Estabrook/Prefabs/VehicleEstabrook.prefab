@@ -1192,11 +1192,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b1b714398061afe49ac06b8f803dcfc8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  laps:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  colorChange: {fileID: 2100000, guid: d80ca93f1dd598c47a595aa3ca754967, type: 2}
+  players: []
+  mapPoints: []
 --- !u!114 &114188549733561858
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1218,6 +1215,8 @@ MonoBehaviour:
   isRacing: 0
   racePos: {fileID: 0}
   testPos: {fileID: 0}
+  playerNumber: 0
+  score: 0
 --- !u!114 &114198100427650922
 MonoBehaviour:
   m_ObjectHideFlags: 1

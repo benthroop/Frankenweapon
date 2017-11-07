@@ -4,4 +4,10 @@
 EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
-  m_Scenes: []
+  m_Scenes:
+  - enabled: 1
+    path: Assets/Race-Estabrook/Scenes/Race-Estabrook.unity
+    guid: 48f33f3d37cd63748b7fcc7e9b3bf971
+  - enabled: 1
+    path: Assets/Race-Estabrook/Scenes/MainMenu.unity
+    guid: 21941486aeadc464594fc1e42715cd18

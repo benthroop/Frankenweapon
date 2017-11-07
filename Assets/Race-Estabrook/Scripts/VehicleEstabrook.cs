@@ -66,13 +66,16 @@ public class VehicleEstabrook: VehicleBase
 
     void FixedUpdate () 
 	{
-		Drive ();
-        if (!isRacing)
+        if (!RaceManager.instance.isWon)
         {
-            if (transform.position.x < -29) transform.position = new Vector3(29, transform.position.y, transform.position.z);
-            if (transform.position.x > 29) transform.position = new Vector3(-29, transform.position.y, transform.position.z);
-            if (transform.position.z < -29) transform.position = new Vector3(transform.position.x, transform.position.y, 29);
-            if (transform.position.z > 29) transform.position = new Vector3(transform.position.x, transform.position.y, -29);
+            Drive();
+            if (!isRacing)
+            {
+                if (transform.position.x < -29) transform.position = new Vector3(29, transform.position.y, transform.position.z);
+                if (transform.position.x > 29) transform.position = new Vector3(-29, transform.position.y, transform.position.z);
+                if (transform.position.z < -29) transform.position = new Vector3(transform.position.x, transform.position.y, 29);
+                if (transform.position.z > 29) transform.position = new Vector3(transform.position.x, transform.position.y, -29);
+            }
         }
     }
 

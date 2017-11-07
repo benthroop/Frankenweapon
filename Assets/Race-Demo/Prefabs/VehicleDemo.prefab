@@ -5130,7 +5130,8 @@ MonoBehaviour:
   canMove: 0
   countDown: {fileID: 0}
   carHealth: 100
-  explo: {fileID: 100000, guid: 33e699e7f450bcd4b93af87907df6869, type: 2}
+  explo: {fileID: 1633738216967962, guid: 01b0a1a76be173146a996e0e70c5ea3a, type: 2}
+  springJoint: {fileID: 0}
   cullingmask:
     serializedVersion: 2
     m_Bits: 4294967295

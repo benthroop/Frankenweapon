@@ -121,7 +121,7 @@ public class VehicleDemo : VehicleBase
         {
             GameObject exploTemp = Instantiate(explo, gameObject.transform.position, Quaternion.identity);
             Destroy(gameObject);
-            Destroy(exploTemp, 3f);
+            Destroy(exploTemp, 10f);
         }
     }
 
@@ -262,6 +262,7 @@ void OnTriggerEnter(Collider col) {
                 springJoint.spring = 1000f;
                 springJoint.maxDistance = 10f;
                 springJoint.minDistance = 2f;
+                springJoint.enableCollision = true;
             }
 
 
@@ -271,13 +272,13 @@ void OnTriggerEnter(Collider col) {
 
    public void Flying()
    {
+        canMove = true;
 
 
+        //      transform.position = Vector3.Lerp(transform.position, loc, speed * Time.deltaTime / Vector3.Distance(transform.position, loc));
+        //      LR.SetPosition(0, car.position);
 
-//      transform.position = Vector3.Lerp(transform.position, loc, speed * Time.deltaTime / Vector3.Distance(transform.position, loc));
-//      LR.SetPosition(0, car.position);
-
-      if (Vector3.Distance(transform.position, loc) < 0.5f)
+        if (Vector3.Distance(transform.position, loc) < 0.5f)
       {
          isFlying = false;
         // LR.enabled = false;

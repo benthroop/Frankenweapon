@@ -6,6 +6,8 @@ using UnityEngine.UI;
 public class InformationDisplay : MonoBehaviour {
 	public GameObject RotationCore;
 
+	public int CurrentPlace;
+
 	public int MaxLap;
 
 	public float CarPoints;
@@ -28,13 +30,24 @@ public class InformationDisplay : MonoBehaviour {
 
 	void Start () {
 		MainCamera = GameObject.FindGameObjectWithTag ("MainCamera");
+		DistanceBetween = Vector3.Distance (NextCheckPoint.transform.position, this.gameObject.transform.position);
 	}
 	
 	// Update is called once per frame
 	void Update () {
+		VehicleCiano CarDetails = GetComponent<VehicleCiano> (); 
+		RacingRuleCiano RacingDetails = CarDetails.WorldCore.GetComponent<RacingRuleCiano> ();
+
 		if (LapNumberInt >= 5) {
 			CarPoints = CarPoints + 40;
 			transform.position = VictorySpawn.transform.position;
+			if (CurrentPlace == 3) {
+				RacingDetails.FirstPlaceSet = true;
+			} else if (CurrentPlace == 2) {
+				RacingDetails.SecondPlaceSet = true;
+			} else if (CurrentPlace == 1) {
+				RacingDetails.ThirdPlaceSet = true;
+			}
 		}
 
 		CarPoints = (LapNumberInt * 100) + (CheckPointPoints);

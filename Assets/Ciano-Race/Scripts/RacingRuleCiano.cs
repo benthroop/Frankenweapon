@@ -3,6 +3,10 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class RacingRuleCiano : MonoBehaviour {
+	public bool RaceOnGoing = false;
+
+	public GameObject InRaceCameraSpot;
+
 	public GameObject FirstPlace;
 	public GameObject SecondPlace;
 	public GameObject ThirdPlace;
@@ -14,9 +18,14 @@ public class RacingRuleCiano : MonoBehaviour {
 	public Sprite PlaceDisplayThird;
 	public Sprite PlaceDisplayNone;
 
+	public GameObject RaceResultCameraSpot;
+
 	public GameObject FirstPlaceSpawn;
+	public bool FirstPlaceSet = false;
 	public GameObject SecondPlaceSpawn;
+	public bool SecondPlaceSet = false;
 	public GameObject ThirdPlaceSpawn;
+	public bool ThirdPlaceSet = false;
 
 	void Start () {
 		foreach (GameObject Racer in RacersList) {
@@ -29,6 +38,15 @@ public class RacingRuleCiano : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 		PlaceCheck ();
+
+		if (FirstPlaceSet == true && SecondPlaceSet == true && ThirdPlaceSet == true) {
+			GameObject Camera = GameObject.FindGameObjectWithTag ("MainCamera");
+			Camera.transform.position = RaceResultCameraSpot.transform.position;
+		} else {
+			GameObject Camera = GameObject.FindGameObjectWithTag ("MainCamera");
+			Camera.transform.position = InRaceCameraSpot.transform.position;
+		}
+
 	}
 
 	void PlaceCheck() {
@@ -43,7 +61,9 @@ public class RacingRuleCiano : MonoBehaviour {
 				SecondPlace = FirstPlace;
 				FirstPlace = Racer;
 				FirstPlaceInt = RacerDetails.CarPoints;
+				RacerDetails.CurrentPlace = 3;
 				RacerDetails.VictorySpawn = FirstPlaceSpawn;
+
 
 				RacerDetails.PlaceDisplayCore.sprite = PlaceDisplayFirst;
 			} else if (RacerDetails.CarPoints >= SecondPlaceInt && RacerDetails.CarPoints < FirstPlaceInt) {
@@ -51,16 +71,19 @@ public class RacingRuleCiano : MonoBehaviour {
 				SecondPlace = Racer;
 				SecondPlaceInt = RacerDetails.CarPoints;
 				RacerDetails.PlaceDisplayCore.sprite = PlaceDisplaySecond;
+				RacerDetails.CurrentPlace = 2;
 				RacerDetails.VictorySpawn = SecondPlaceSpawn;
 
 			} else if (RacerDetails.CarPoints >= ThirdPlaceInt && RacerDetails.CarPoints < SecondPlaceInt && RacersList.Count >= 3) {
 				ThirdPlace = Racer;
 				ThirdPlaceInt = RacerDetails.CarPoints;
 				RacerDetails.PlaceDisplayCore.sprite = PlaceDisplayThird;
+				RacerDetails.CurrentPlace = 1;
 				RacerDetails.VictorySpawn = ThirdPlaceSpawn;
 
 			} else {
 				RacerDetails.PlaceDisplayCore.sprite = PlaceDisplayNone;
+				RacerDetails.CurrentPlace = 0;
 				RacerDetails.VictorySpawn = null;
 			}
 		}

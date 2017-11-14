@@ -4,4 +4,7 @@
 EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
-  m_Scenes: []
+  m_Scenes:
+  - enabled: 1
+    path: Assets/Race-Shea/Race-Shea.unity
+    guid: f4515dcab2360ed4081d537dec2a7b28

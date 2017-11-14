@@ -109,7 +109,7 @@ public class TosserGun : Weapon {
         Rigidbody body = heldObject.GetComponent<Rigidbody>();
         heldObject.GetComponent<Rigidbody>().isKinematic = false;
         heldObject.GetComponent<Collider>().enabled = true;
-        body.AddForce(transform.up * -force, throwForceMode);
+        body.AddForce(transform.forward * force, throwForceMode);
         heldObject = null;
     }
 

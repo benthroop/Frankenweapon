@@ -52,14 +52,14 @@ public class RaceManagerThomas : MonoBehaviour
             {
                 if (Racer1Position.magnitude < Racer2Position.magnitude)
                 {
-                    Debug.Log("Beezle in lead");
+                    
                     player1Text.SetActive(true);
                     Player2Text.SetActive(false);
                 }
 
                 if (Racer1Position.magnitude > Racer2Position.magnitude)
                 {
-                    Debug.Log("Baelzebub in lead");
+                    
                     Player2Text.SetActive(true);
                     player1Text.SetActive(false);
                 }
@@ -75,14 +75,14 @@ public class RaceManagerThomas : MonoBehaviour
         {
             if (Racer1index > Racer2index)
             {
-                Debug.Log("Beezle in lead");
+                
                 player1Text.SetActive(true);
                 Player2Text.SetActive(false);
             }
 
             if (Racer2index > Racer1index)
             {
-                Debug.Log("Baelzebub in lead");
+                
                 Player2Text.SetActive(true);
                 player1Text.SetActive(false);
             }
@@ -90,14 +90,14 @@ public class RaceManagerThomas : MonoBehaviour
 
         if (Racer1Laps > Racer2Laps)
         {
-            Debug.Log("Beezle in lead");
+            
             player1Text.SetActive(true);
             Player2Text.SetActive(false);
         }
 
         if (Racer2Laps > Racer1Laps)
         {
-            Debug.Log("Baelzebub in lead");
+            
             Player2Text.SetActive(true);
             player1Text.SetActive(false);
         }
@@ -160,7 +160,7 @@ public class RaceManagerThomas : MonoBehaviour
 
     void Win ()
     {
-        if(Racer1Laps == 2)
+        if(Racer1Laps == 4)
         {
             Player1Wins.SetActive(true);
             Laps1Text.text = ("RACE OVER");

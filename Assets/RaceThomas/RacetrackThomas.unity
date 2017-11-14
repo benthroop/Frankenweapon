@@ -1386,6 +1386,126 @@ Prefab:
       value: 
       objectReference: {fileID: 1616337240782076, guid: 0fb798c8de0127c4d988242dc6714073,
         type: 2}
+    - target: {fileID: 146000010451434082, guid: 1e822fbb780b30f4384e408be557e8ad,
+        type: 2}
+      propertyPath: m_ForwardFriction.m_ExtremumValue
+      value: 0.75
+      objectReference: {fileID: 0}
+    - target: {fileID: 146000010194086486, guid: 1e822fbb780b30f4384e408be557e8ad,
+        type: 2}
+      propertyPath: m_ForwardFriction.m_ExtremumValue
+      value: 0.75
+      objectReference: {fileID: 0}
+    - target: {fileID: 146000010486055952, guid: 1e822fbb780b30f4384e408be557e8ad,
+        type: 2}
+      propertyPath: m_ForwardFriction.m_ExtremumValue
+      value: 0.75
+      objectReference: {fileID: 0}
+    - target: {fileID: 146000010062207238, guid: 1e822fbb780b30f4384e408be557e8ad,
+        type: 2}
+      propertyPath: m_ForwardFriction.m_ExtremumValue
+      value: 0.75
+      objectReference: {fileID: 0}
+    - target: {fileID: 146000010451434082, guid: 1e822fbb780b30f4384e408be557e8ad,
+        type: 2}
+      propertyPath: m_ForwardFriction.m_Stiffness
+      value: 2.49
+      objectReference: {fileID: 0}
+    - target: {fileID: 146000010194086486, guid: 1e822fbb780b30f4384e408be557e8ad,
+        type: 2}
+      propertyPath: m_ForwardFriction.m_Stiffness
+      value: 2.49
+      objectReference: {fileID: 0}
+    - target: {fileID: 146000010486055952, guid: 1e822fbb780b30f4384e408be557e8ad,
+        type: 2}
+      propertyPath: m_ForwardFriction.m_Stiffness
+      value: 2.49
+      objectReference: {fileID: 0}
+    - target: {fileID: 146000010062207238, guid: 1e822fbb780b30f4384e408be557e8ad,
+        type: 2}
+      propertyPath: m_ForwardFriction.m_Stiffness
+      value: 2.49
+      objectReference: {fileID: 0}
+    - target: {fileID: 146000010451434082, guid: 1e822fbb780b30f4384e408be557e8ad,
+        type: 2}
+      propertyPath: m_SidewaysFriction.m_ExtremumSlip
+      value: 1.52
+      objectReference: {fileID: 0}
+    - target: {fileID: 146000010194086486, guid: 1e822fbb780b30f4384e408be557e8ad,
+        type: 2}
+      propertyPath: m_SidewaysFriction.m_ExtremumSlip
+      value: 1.52
+      objectReference: {fileID: 0}
+    - target: {fileID: 146000010486055952, guid: 1e822fbb780b30f4384e408be557e8ad,
+        type: 2}
+      propertyPath: m_SidewaysFriction.m_ExtremumSlip
+      value: 1.52
+      objectReference: {fileID: 0}
+    - target: {fileID: 146000010062207238, guid: 1e822fbb780b30f4384e408be557e8ad,
+        type: 2}
+      propertyPath: m_SidewaysFriction.m_ExtremumSlip
+      value: 1.52
+      objectReference: {fileID: 0}
+    - target: {fileID: 146000010451434082, guid: 1e822fbb780b30f4384e408be557e8ad,
+        type: 2}
+      propertyPath: m_SidewaysFriction.m_ExtremumValue
+      value: 0.55
+      objectReference: {fileID: 0}
+    - target: {fileID: 146000010194086486, guid: 1e822fbb780b30f4384e408be557e8ad,
+        type: 2}
+      propertyPath: m_SidewaysFriction.m_ExtremumValue
+      value: 0.55
+      objectReference: {fileID: 0}
+    - target: {fileID: 146000010486055952, guid: 1e822fbb780b30f4384e408be557e8ad,
+        type: 2}
+      propertyPath: m_SidewaysFriction.m_ExtremumValue
+      value: 0.55
+      objectReference: {fileID: 0}
+    - target: {fileID: 146000010062207238, guid: 1e822fbb780b30f4384e408be557e8ad,
+        type: 2}
+      propertyPath: m_SidewaysFriction.m_ExtremumValue
+      value: 0.55
+      objectReference: {fileID: 0}
+    - target: {fileID: 146000010451434082, guid: 1e822fbb780b30f4384e408be557e8ad,
+        type: 2}
+      propertyPath: m_SidewaysFriction.m_AsymptoteValue
+      value: 0.33
+      objectReference: {fileID: 0}
+    - target: {fileID: 146000010194086486, guid: 1e822fbb780b30f4384e408be557e8ad,
+        type: 2}
+      propertyPath: m_SidewaysFriction.m_AsymptoteValue
+      value: 0.33
+      objectReference: {fileID: 0}
+    - target: {fileID: 146000010486055952, guid: 1e822fbb780b30f4384e408be557e8ad,
+        type: 2}
+      propertyPath: m_SidewaysFriction.m_AsymptoteValue
+      value: 0.33
+      objectReference: {fileID: 0}
+    - target: {fileID: 146000010062207238, guid: 1e822fbb780b30f4384e408be557e8ad,
+        type: 2}
+      propertyPath: m_SidewaysFriction.m_AsymptoteValue
+      value: 0.33
+      objectReference: {fileID: 0}
+    - target: {fileID: 146000010451434082, guid: 1e822fbb780b30f4384e408be557e8ad,
+        type: 2}
+      propertyPath: m_SidewaysFriction.m_Stiffness
+      value: 1.51
+      objectReference: {fileID: 0}
+    - target: {fileID: 146000010194086486, guid: 1e822fbb780b30f4384e408be557e8ad,
+        type: 2}
+      propertyPath: m_SidewaysFriction.m_Stiffness
+      value: 1.51
+      objectReference: {fileID: 0}
+    - target: {fileID: 146000010062207238, guid: 1e822fbb780b30f4384e408be557e8ad,
+        type: 2}
+      propertyPath: m_SidewaysFriction.m_Stiffness
+      value: 1.51
+      objectReference: {fileID: 0}
+    - target: {fileID: 146000010486055952, guid: 1e822fbb780b30f4384e408be557e8ad,
+        type: 2}
+      propertyPath: m_SidewaysFriction.m_Stiffness
+      value: 1.51
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 1e822fbb780b30f4384e408be557e8ad, type: 2}
   m_IsPrefabParent: 0
@@ -8656,7 +8776,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Player1 in first!
+  m_Text: Beezle in first!
 --- !u!222 &921558246
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -9001,7 +9121,7 @@ MonoBehaviour:
   player1Text: {fileID: 921558243}
   Player2Text: {fileID: 1381491208}
   Player1Wins: {fileID: 1981453286}
-  Player2Wins: {fileID: 0}
+  Player2Wins: {fileID: 809098498}
   Laps1Text: {fileID: 2051756931}
   Laps2Text: {fileID: 831917071}
 --- !u!4 &1016891605
@@ -11814,7 +11934,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Player2 in first!
+  m_Text: Baelzebub in first!
 --- !u!222 &1381491210
 CanvasRenderer:
   m_ObjectHideFlags: 0

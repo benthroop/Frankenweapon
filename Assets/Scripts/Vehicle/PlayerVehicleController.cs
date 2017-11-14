@@ -9,7 +9,7 @@ public class PlayerVehicleController : MonoBehaviour
 	VehicleActionSet vehicleActions;
 	VehicleBase myVehicle;
 
-	public enum ControlType { Keyboard, Controller1, Controller2 }
+	public enum ControlType { Keyboard, Controller1, Controller2, Controller3, Controller4}
 	public ControlType controlType = ControlType.Keyboard;
 
 	void Start()

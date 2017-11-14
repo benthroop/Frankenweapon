@@ -12578,6 +12578,11 @@ Prefab:
       propertyPath: txt
       value: 
       objectReference: {fileID: 824598854}
+    - target: {fileID: 114421765966689754, guid: 3f1a13e0c997ab74aa82bca51853d126,
+        type: 2}
+      propertyPath: controlType
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 3f1a13e0c997ab74aa82bca51853d126, type: 2}
   m_IsPrefabParent: 0

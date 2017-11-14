@@ -74,9 +74,10 @@ GameObject:
   - component: {fileID: 54345016775385504}
   - component: {fileID: 114592066052245622}
   - component: {fileID: 114507234179803814}
+  - component: {fileID: 114575269192890768}
   m_Layer: 0
   m_Name: Ciano-Car
-  m_TagString: Untagged
+  m_TagString: Car2
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -252,15 +253,15 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1554689971044434}
-  m_LocalRotation: {x: -0, y: -0.6584711, z: -0, w: 0.75260603}
-  m_LocalPosition: {x: 17.32, y: 0.84, z: 6.16}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 6.17, y: 0.91, z: -7.44}
+  m_LocalScale: {x: 1.5, y: 1.5, z: 1.5}
   m_Children:
   - {fileID: 4776080435238214}
   - {fileID: 4622045143877106}
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: -82.367004, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4600080961618968
 Transform:
   m_ObjectHideFlags: 1
@@ -580,7 +581,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 59a30d3a31dacbd46bac568054fcc26d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  controlType: 0
+  controlType: 1
+  CanMove: 0
+--- !u!114 &114575269192890768
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1554689971044434}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 88463027d5f3cfa4c85e7608353baf88, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &114592066052245622
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -596,7 +609,7 @@ MonoBehaviour:
   frontLeft: {fileID: 146145242496467744}
   backRight: {fileID: 146503594605113422}
   backLeft: {fileID: 146895305679383182}
-  maxSteer: 10
+  maxSteer: 45
   maxTorque: 500
 --- !u!146 &146145242496467744
 WheelCollider:

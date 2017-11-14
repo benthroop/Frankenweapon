@@ -8,6 +8,8 @@ TagManager:
   - Glow
   - Rocket
   - Wood
+  - Car
+  - Car2
   layers:
   - Default
   - TransparentFX

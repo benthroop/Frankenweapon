@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using UnityEngine.Events;
 
 public class VehicleAlter : VehicleBase 
 {
@@ -11,7 +12,9 @@ public class VehicleAlter : VehicleBase
 	public float maxSteer;
 	public float maxTorque;
     public bool canBoost = true;
-    public bool canMove = true;
+
+    public UnityEvent driving;
+    public UnityEvent idle;
 
     void Start () 
 	{
@@ -44,6 +47,12 @@ public class VehicleAlter : VehicleBase
         VisualSpin(backRight);
         VisualSpin(backLeft);
         EBrake();
+
+        if (Input.GetKeyDown(KeyCode.W))
+        {
+            idle.Invoke();
+        }
+
 	}
 
     void VisualSpin(WheelCollider collider)
@@ -59,6 +68,7 @@ public class VehicleAlter : VehicleBase
 
         visualWheel.transform.position = position;
         visualWheel.transform.rotation = rotation;
+        //driving.Invoke();
     }
 
 
@@ -79,14 +89,13 @@ public class VehicleAlter : VehicleBase
     public override void BoostStart()
     {
 
-        if (canMove == true)
-        {
+        
             if (canBoost == true)
             {
                 Debug.Log("BOOST");
                 gameObject.GetComponent<Rigidbody>().AddForce(transform.forward * 1000, ForceMode.Acceleration);
             }
-        }
+        
 
     }
 

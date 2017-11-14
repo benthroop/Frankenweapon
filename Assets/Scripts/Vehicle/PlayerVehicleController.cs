@@ -9,8 +9,9 @@ public class PlayerVehicleController : MonoBehaviour
 	VehicleActionSet vehicleActions;
 	VehicleBase myVehicle;
 
-	public enum ControlType { Keyboard, Controller1, Controller2 }
+	public enum ControlType { Keyboard, Keyboard2, Controller1, Controller2 }
 	public ControlType controlType = ControlType.Keyboard;
+    public bool CanMove = false;
 
 	void Start()
 	{
@@ -28,7 +29,18 @@ public class PlayerVehicleController : MonoBehaviour
 			vehicleActions.NextGear.AddDefaultBinding(new KeyBindingSource(Key.C));
 			vehicleActions.PreviousGear.AddDefaultBinding(new KeyBindingSource(Key.V));
 		}
-		else
+        else if(controlType == ControlType.Keyboard2)
+        {
+            vehicleActions.Left.AddDefaultBinding(new KeyBindingSource(Key.LeftArrow));
+            vehicleActions.Right.AddDefaultBinding(new KeyBindingSource(Key.RightArrow));
+            vehicleActions.Forward.AddDefaultBinding(new KeyBindingSource(Key.UpArrow));
+            vehicleActions.Backward.AddDefaultBinding(new KeyBindingSource(Key.DownArrow));
+            vehicleActions.Boost.AddDefaultBinding(new KeyBindingSource(Key.RightControl));
+            vehicleActions.Action.AddDefaultBinding(new KeyBindingSource(Key.RightShift));
+            vehicleActions.NextGear.AddDefaultBinding(new KeyBindingSource(Key.M));
+            vehicleActions.PreviousGear.AddDefaultBinding(new KeyBindingSource(Key.N));
+        }
+        else if (controlType == ControlType.Controller1 )
 		{
 			vehicleActions.Left.AddDefaultBinding(InputControlType.LeftStickLeft);
 			vehicleActions.Right.AddDefaultBinding(InputControlType.LeftStickRight);
@@ -45,39 +57,44 @@ public class PlayerVehicleController : MonoBehaviour
 		}
 	}
 
-	void Update()
-	{
-		myVehicle.SetSteering(vehicleActions.Steering);
-		myVehicle.SetThrottle(vehicleActions.Throttle);
+    void Update()
+    {
+        if (CanMove == true)
+        {
 
-		if (vehicleActions.Boost.WasPressed)
-		{
-			myVehicle.BoostStart();
-		}
 
-		if (vehicleActions.Boost.WasReleased)
-		{
-			myVehicle.BoostStop();
-		}
+            myVehicle.SetSteering(vehicleActions.Steering);
+            myVehicle.SetThrottle(vehicleActions.Throttle);
 
-		if (vehicleActions.Action.WasPressed)
-		{
-			myVehicle.ActionStart();
-		}
+            if (vehicleActions.Boost.WasPressed)
+            {
+                myVehicle.BoostStart();
+            }
 
-		if (vehicleActions.Action.WasReleased)
-		{
-			myVehicle.ActionStop();
-		}
+            if (vehicleActions.Boost.WasReleased)
+            {
+                myVehicle.BoostStop();
+            }
 
-		if (vehicleActions.NextGear.WasPressed)
-		{
-			myVehicle.NextGear();
-		}
+            if (vehicleActions.Action.WasPressed)
+            {
+                myVehicle.ActionStart();
+            }
 
-		if (vehicleActions.PreviousGear.WasPressed)
-		{
-			myVehicle.PreviousGear();
-		}
-	}
+            if (vehicleActions.Action.WasReleased)
+            {
+                myVehicle.ActionStop();
+            }
+
+            if (vehicleActions.NextGear.WasPressed)
+            {
+                myVehicle.NextGear();
+            }
+
+            if (vehicleActions.PreviousGear.WasPressed)
+            {
+                myVehicle.PreviousGear();
+            }
+        }
+    }
 }

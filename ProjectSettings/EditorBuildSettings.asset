@@ -4,4 +4,10 @@
 EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
-  m_Scenes: []
+  m_Scenes:
+  - enabled: 1
+    path: Assets/Race-Alter/TitleScreen.unity
+    guid: adadd70c5a215a24fae91dd9551312df
+  - enabled: 1
+    path: Assets/Race-Alter/Race-Alter.unity
+    guid: c07d04aa57371594c8483ece9203be5d

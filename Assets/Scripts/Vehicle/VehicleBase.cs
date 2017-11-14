@@ -6,8 +6,12 @@ public class VehicleBase : MonoBehaviour
 {
 	protected float steeringControlValue;
 	protected float throttleControlValue;
+    protected float cameraControlValuex;
+    protected float cameraControlValuey;
+    protected int actionControlValue;
 
-	public virtual void SetThrottle(float throttleValue)
+
+    public virtual void SetThrottle(float throttleValue)
 	{
 		throttleControlValue = throttleValue;
 	}
@@ -17,7 +21,15 @@ public class VehicleBase : MonoBehaviour
 		steeringControlValue = steeringValue;
 	}
 
-	public virtual void BoostStart()
+    public virtual void SetCamera(float cameraValuex, float cameraValuey)
+    {
+        cameraControlValuex = cameraValuex;
+        cameraControlValuey = cameraValuey;
+
+
+    }
+
+    public virtual void BoostStart()
 	{
 
 	}

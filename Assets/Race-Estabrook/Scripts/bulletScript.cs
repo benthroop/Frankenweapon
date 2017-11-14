@@ -24,12 +24,19 @@ public class bulletScript : MonoBehaviour {
     {
         if (col.GetComponent<VehicleEstabrook>() == null || col.GetComponent<VehicleEstabrook>().playerNumber != playerNum)
         {
+            
             colRB = col.GetComponent<Rigidbody>();
-            if(colRB != null)
+            if(colRB != null && !col.GetComponent<VehicleEstabrook>().isShielded)
             {
-                colRB.AddForce(transform.right * -1000);
+                Debug.Log("Hit Target");
+                colRB.AddForce(transform.up * 100000);
+                colRB.velocity -= col.transform.forward * 1;
                 Destroy(this.gameObject);
+
             }
+
+           
+
         }
     }
 }

@@ -27,8 +27,14 @@ public class PlayerVehicleController : MonoBehaviour
 			vehicleActions.Action.AddDefaultBinding(new KeyBindingSource(Key.E));
 			vehicleActions.NextGear.AddDefaultBinding(new KeyBindingSource(Key.C));
 			vehicleActions.PreviousGear.AddDefaultBinding(new KeyBindingSource(Key.V));
-		}
-		else
+            vehicleActions.LookRight.AddDefaultBinding(new KeyBindingSource(Key.RightArrow));
+            vehicleActions.LookLeft.AddDefaultBinding(new KeyBindingSource(Key.LeftArrow));
+            vehicleActions.LookUp.AddDefaultBinding(new KeyBindingSource(Key.UpArrow));
+            vehicleActions.LookDown.AddDefaultBinding(new KeyBindingSource(Key.DownArrow));
+
+
+        }
+        else
 		{
 			vehicleActions.Left.AddDefaultBinding(InputControlType.LeftStickLeft);
 			vehicleActions.Right.AddDefaultBinding(InputControlType.LeftStickRight);
@@ -49,6 +55,7 @@ public class PlayerVehicleController : MonoBehaviour
 	{
 		myVehicle.SetSteering(vehicleActions.Steering);
 		myVehicle.SetThrottle(vehicleActions.Throttle);
+        myVehicle.SetCamera(vehicleActions.LookHorizontal, vehicleActions.LookVertical);
 
 		if (vehicleActions.Boost.WasPressed)
 		{

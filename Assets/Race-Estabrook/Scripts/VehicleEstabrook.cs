@@ -13,7 +13,7 @@ public class VehicleEstabrook: VehicleBase
 
     public GameObject gun;
     
-    public GameObject LookThing;
+    public GameObject camera;
 
     public GameObject bulletPrefab;
     public GameObject shootPosition;
@@ -28,10 +28,19 @@ public class VehicleEstabrook: VehicleBase
 
     private Rigidbody rb;
 
+    Transform lastHit;
+
     public int count = 0;
     public int score = 0;
+    int boost = 50;
+    int modifier = 1;
+
+    public GameObject shield;
+    public bool isShielded = false;
 	void Start () 
 	{
+        lastHit = racePos;
+        //gun.transform.Rotate(Vector3.forward * 90);
         rb = GetComponent<Rigidbody>();
         if(isRacing)
         {
@@ -50,13 +59,16 @@ public class VehicleEstabrook: VehicleBase
 
 	void Drive()
 	{
+        
 		//turning
 		frontLeft.steerAngle = steeringControlValue * maxSteer;
 		frontRight.steerAngle = steeringControlValue * maxSteer;
-
-		//torque
-		backLeft.motorTorque = throttleControlValue * maxTorque;
-		backRight.motorTorque = throttleControlValue * maxTorque;
+        if (!RaceManager.instance.isCountdown)
+        {
+            //torque
+            backLeft.motorTorque = throttleControlValue * maxTorque;
+            backRight.motorTorque = throttleControlValue * maxTorque;
+        }
 
         ApplyLocalPositionToVisuals(frontLeft);
         ApplyLocalPositionToVisuals(frontRight);
@@ -70,14 +82,22 @@ public class VehicleEstabrook: VehicleBase
     {
         //FindTarget();
         //gun.transform.Rotate(Vector3.up * 180);
-        if(Input.GetMouseButtonDown(0))
+        if (Input.GetMouseButtonDown(0))
         {
             Shoot();
         }
-        if(Input.GetKeyDown(KeyCode.R))
+        if (Input.GetKeyDown(KeyCode.R))
         {
-            transform.rotation = Quaternion.Euler( new Vector3(0, transform.rotation.y, 0));
+            transform.rotation = Quaternion.Euler(new Vector3(0, transform.rotation.y, 0));
         }
+        if (transform.position.y < -40)
+        {
+            transform.position = new Vector3(lastHit.position.x, lastHit.position.y, lastHit.position.z);
+            transform.rotation = Quaternion.identity;
+            rb.velocity = Vector3.zero;
+
+        }
+        Debug.Log(modifier);
     }
 
     void FixedUpdate () 
@@ -94,10 +114,10 @@ public class VehicleEstabrook: VehicleBase
             }
         }
 
-        
-        gun.transform.rotation = Quaternion.LookRotation(gun.transform.position - LookThing.transform.position, Vector3.up);
-        
-        gun.transform.Rotate(Vector3.up * 90);
+        //gun.transform.rotation = Quaternion.LookRotation(gun.transform.position - LookThing.transform.position, Vector3.up);
+        Vector3 cameraRot = new Vector3(cameraControlValuey*-1, cameraControlValuex, 0);
+        camera.transform.Rotate(cameraRot);
+        gun.transform.Rotate(new Vector3(0, cameraControlValuex, 0));
         
 
         AddDownForce();
@@ -128,74 +148,28 @@ public class VehicleEstabrook: VehicleBase
 
     }
 
-    public void FindTarget()
-    {
-        int layermask = 1 << 31;
-        layermask = ~layermask;
-
-        GameObject target = null;
-
-        Collider[] sensedObjects = Physics.OverlapSphere(gun.transform.position, 5f, layermask);
-        for(int i = 0; i < sensedObjects.Length; i++)
-        {
-           
-            Rigidbody hitRB = sensedObjects[i].GetComponent<Rigidbody>();
-
-            RaycastHit hitItem;
-
-            
-
-            if (Physics.Linecast(gun.transform.position, sensedObjects[i].transform.position, out hitItem, layermask))
-            {
-                if (hitRB != null && hitRB.tag == "Wood")
-                {
-                    Debug.Log(hitItem.transform.name);
-
-                    target = hitItem.transform.gameObject;
-                        //hitRB.AddForce(hitItem.normal * -500f);
-                        //hitRB.AddForce(Vector3.up * 500f);
-
-                }
-            }
-            
-        }
-        if(target != null)
-        {
-            gun.transform.rotation = Quaternion.LookRotation(target.transform.position, Vector3.up);
-
-        }
-        /*RaycastHit targetcar;
-        if(Physics.SphereCast(gun.transform.position, 1f, gun.transform.right, out targetcar, 100))
-        {
-            Debug.Log("Test");
-            Debug.Log("RaycastHit: " + targetcar.transform.name);
-            if (targetcar.transform.gameObject.tag == "Wood")
-            {
-                Debug.Log("Hit");
-                targetcar.rigidbody.AddForce(targetcar.normal * 300);
-            }
-        }*/
-    }
-
+   
     public override void BoostStart()
 	{
-		//all you
+        shield.SetActive(true);
+        isShielded = true;
 	}
 
 	public override void BoostStop()
 	{
-		//all you
+        shield.SetActive(false);
+        isShielded = false;
 	}
 
 	public override void ActionStart()
 	{
-        
+        if (!isShielded && !RaceManager.instance.isCountdown)
+        {
+            Shoot();
+        }
 	}
 
-	public override void ActionStop()
-	{
-		//all you
-	}
+	
 
     void Shoot()
     {
@@ -222,10 +196,12 @@ public class VehicleEstabrook: VehicleBase
             hasChecked = true;
         }else if(col.tag == "Point")
         {
+            lastHit = col.gameObject.transform;
             string previous = "";
             if (previous != col.name)
             {
                 score++;
+                
                 previous = col.name;
 
             }

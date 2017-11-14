@@ -10,8 +10,10 @@ public class VehicleEttinger : VehicleBase
 
 	public float maxSteer;
 	public float maxTorque;
+    private int score;
+    public GameObject Reset;
 
-	void Start () 
+    void Start () 
 	{
 		//this is to keep the wheels from jittering
 		frontRight.ConfigureVehicleSubsteps(5f, 12, 15);
@@ -34,12 +36,31 @@ public class VehicleEttinger : VehicleBase
 		//there's actually a bit about that in the Unity Wheelcollider tutorial: https://docs.unity3d.com/Manual/WheelColliderTutorial.html
 	}
 	
-	void Update () 
+	void FixedUpdate () 
 	{
 		Drive ();
-	}
+    }
 
-	public override void BoostStart()
+    void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.R))
+            Application.LoadLevel(0);
+
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        score = score + 1;
+        if (other.gameObject.tag == "Respawn")
+        {
+            gameObject.transform.position = Reset.gameObject.transform.position;
+            gameObject.transform.rotation = Reset.gameObject.transform.rotation;
+            gameObject.GetComponent<Rigidbody>().velocity= new Vector3(0,0,0);
+        }
+
+    }
+
+    public override void BoostStart()
 	{
 		//all you
 	}

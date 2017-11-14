@@ -13,17 +13,7 @@ public class VehicleShea : VehicleBase
     public int maxTorqueIncrement;
     private float maxTorqueStart;
 
-<<<<<<< HEAD
-<<<<<<< HEAD
-    public float lap;
-=======
-    private float _originalRotX;
-    private float _originalRotZ;
->>>>>>> 92eaf9db18ba660c961582c59c1b45165c22f56f
-=======
-    private float _originalRotX;
-    private float _originalRotZ;
->>>>>>> 92eaf9db18ba660c961582c59c1b45165c22f56f
+
 
 	void Start () 
 	{
@@ -34,8 +24,6 @@ public class VehicleShea : VehicleBase
 		backRight.ConfigureVehicleSubsteps(5f, 12, 15);
 		backLeft.ConfigureVehicleSubsteps(5f, 12, 15);
 
-        _originalRotX = transform.rotation.x;
-        _originalRotZ = transform.rotation.z;
     }
 
 	void Drive()
@@ -67,37 +55,14 @@ public class VehicleShea : VehicleBase
         wheelVisual.transform.position = position;
         wheelVisual.transform.rotation = rotation;
     }
-
-    void OnTriggerEnter (Collider finish)
-    {
-        Lap(); 
-    }
 	
 	void Update () 
 	{
 		Drive ();
         TurnWheels(frontLeft);
         TurnWheels(frontRight);
-
-        if (Input.GetKeyDown(KeyCode.R))
-        {
-            flipCar();
-        }
     }
 
-    void flipCar()
-    {
-        transform.Translate(0, 3, 0);
-        transform.rotation = (Quaternion.Euler(new Vector3(_originalRotX, transform.rotation.y, _originalRotZ)));
-    }
-<<<<<<< HEAD
-
-    public void Lap ()
-    {
-        lap++;
-    }
-=======
->>>>>>> 92eaf9db18ba660c961582c59c1b45165c22f56f
 
 	public override void BoostStart()
 	{

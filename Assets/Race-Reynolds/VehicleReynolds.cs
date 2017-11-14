@@ -13,15 +13,25 @@ public class VehicleReynolds : VehicleBase
     public GameObject backRightVis;
     public GameObject backLeftVis;
 
-    public GameObject positionTracker;
+    public GameObject positionTrack;
+    public PositionTracking positionTracker;
+    public GameObject groundChecker;
+    public GameObject audioPlayer;
+    public GameObject audioPlayer2;
 
     public float maxSteer;
 	public float maxTorque;
     public float downForce;
 
+    public bool turning = false;
+    public bool grounded = true;
+
     public int playerNum;
+    public int resetTimer = 0;
+    int startTimer = 0;
 	void Start () 
 	{
+        positionTracker = positionTrack.GetComponent<PositionTracking>();
 		//this is to keep the wheels from jittering
 		frontRight.ConfigureVehicleSubsteps(5f, 12, 15);
 		frontLeft.ConfigureVehicleSubsteps(5f, 12, 15);
@@ -51,7 +61,10 @@ public class VehicleReynolds : VehicleBase
 
     private void AddDownForce()
     {
-        GetComponent<Rigidbody>().AddForce(-transform.up * downForce * GetComponent<Rigidbody>().velocity.magnitude);
+       if (grounded)
+        {
+            GetComponent<Rigidbody>().AddForce(-transform.up * downForce * GetComponent<Rigidbody>().velocity.magnitude);
+        }
     }
 
     public void ApplyLocalPositionToVisuals(WheelCollider collider)
@@ -85,7 +98,36 @@ public class VehicleReynolds : VehicleBase
     }
     void Update () 
 	{
-		Drive ();
+        startTimer++;
+        if (startTimer > 160)
+        {
+            Drive();
+            GetComponent<Rigidbody>().isKinematic = false;
+        }
+        if (GetComponent<Rigidbody>().velocity.magnitude < 1)
+        {
+            resetTimer++;
+        }
+        else
+        {
+            resetTimer = 0;
+        }
+        if (resetTimer >= 60 && startTimer > 220)
+        {
+            switch (playerNum)
+            {
+                case 1:
+                    transform.position = positionTracker.checkpoints[positionTracker.p1Index].transform.position;
+                    transform.rotation = positionTracker.checkpoints[positionTracker.p1Index].transform.localRotation;
+                    break;
+                case 2:
+                    transform.position = positionTracker.checkpoints[positionTracker.p2Index].transform.position;
+                    transform.rotation = positionTracker.checkpoints[positionTracker.p2Index].transform.localRotation;
+                    break;
+                default:
+                    break;
+            }
+        }
 	}
     private void FixedUpdate()
     {
@@ -93,32 +135,47 @@ public class VehicleReynolds : VehicleBase
         ApplyLocalPositionToVisuals(frontLeft);
         ApplyLocalPositionToVisuals(backRight);
         ApplyLocalPositionToVisuals(backLeft);
+        if (turning)
+        {
+            transform.Rotate(0, 0, 10);
+        }
     }
     public override void BoostStart()
-	{
-		//all you
-	}
+    {
+        if (startTimer > 160)
+        {
+            audioPlayer2.GetComponent<AudioSource>().Play();
+            backLeft.motorTorque = throttleControlValue * 9999;
+            backRight.motorTorque = throttleControlValue * 9999;
+        }
+    }
 
 	public override void BoostStop()
-	{
-		//all you
-	}
+    {
+        backLeft.motorTorque = throttleControlValue * 0;
+        backRight.motorTorque = throttleControlValue * 0;
+    }
 
 	public override void ActionStart()
 	{
-		//all you
+        if (!grounded && startTimer > 160)
+        {
+            turning = true;
+            audioPlayer.GetComponent<AudioSource>().volume = 1;
+        }
 	}
 
 	public override void ActionStop()
 	{
-		//all you
-	}
+        turning = false;
+        audioPlayer.GetComponent<AudioSource>().volume = 0;
+    }
 
     public void OnTriggerEnter(Collider other)
     {
         if (other.tag == "Checkpoint")
         {
-            positionTracker.GetComponent<PositionTracking>().UpdatePosition(playerNum, other.GetComponent<CheckpointScript>().index);
+            positionTracker.UpdatePosition(playerNum, other.GetComponent<CheckpointScript>().index);
         }
     }
 }

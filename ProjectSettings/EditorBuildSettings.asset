@@ -4,4 +4,10 @@
 EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
-  m_Scenes: []
+  m_Scenes:
+  - enabled: 1
+    path: Assets/Race-Reynolds/MainMenu.unity
+    guid: de159d3fd6299c741bcd803fd581530f
+  - enabled: 1
+    path: Assets/Race-Reynolds/Race-Reynolds.unity
+    guid: 063bbdd2d39434247890b79ab115bcc3

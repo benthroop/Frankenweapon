@@ -144,6 +144,23 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!1 &1078736847365078
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 4294767474608862}
+  - component: {fileID: 65672207194784436}
+  - component: {fileID: 114801458231283294}
+  m_Layer: 0
+  m_Name: groundTouch
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
 --- !u!1 &1135395001462260
 GameObject:
   m_ObjectHideFlags: 1
@@ -354,16 +371,17 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000012082766304}
-  m_LocalRotation: {x: -0, y: -0.68349695, z: -0, w: -0.72995335}
-  m_LocalPosition: {x: -1.1314726, y: 1.22, z: 13.850643}
+  m_LocalRotation: {x: 0, y: -0.7071068, z: 0, w: 0.7071068}
+  m_LocalPosition: {x: 6.02, y: -0.96, z: -5.32}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4613513426370130}
   - {fileID: 4000011872048080}
   - {fileID: 4641729575384456}
+  - {fileID: 4294767474608862}
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: -273.765, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: -90, z: 0}
 --- !u!4 &4000013377262398
 Transform:
   m_ObjectHideFlags: 1
@@ -415,6 +433,19 @@ Transform:
   m_Children: []
   m_Father: {fileID: 4641729575384456}
   m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!4 &4294767474608862
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1078736847365078}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: -0.088, z: 1.655}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 4000011872555970}
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4329389461204922
 Transform:
@@ -907,6 +938,18 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.81637096, y: 0.29588675, z: 2.8228366}
   m_Center: {x: 0.001972586, y: 0.79274094, z: 7.78165e-12}
+--- !u!65 &65672207194784436
+BoxCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1078736847365078}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1, y: 0.1298809, z: 0.29267496}
+  m_Center: {x: 3.4713e-18, y: 0.109595776, z: -0.015869267}
 --- !u!114 &114354805456380646
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -938,11 +981,27 @@ MonoBehaviour:
   frontLeftVis: {fileID: 1890928767838968}
   backRightVis: {fileID: 1717395856755552}
   backLeftVis: {fileID: 1000012886211860}
+  positionTrack: {fileID: 0}
   positionTracker: {fileID: 0}
+  groundChecker: {fileID: 1078736847365078}
   maxSteer: 30
-  maxTorque: 75
+  maxTorque: 200
   downForce: 1000
-  playerNum: 2
+  turning: 0
+  grounded: 1
+  playerNum: 1
+  resetTimer: 0
+--- !u!114 &114801458231283294
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1078736847365078}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fc17971b57f01934d81992365fe59870, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!146 &146000010062207238
 WheelCollider:
   m_ObjectHideFlags: 1
@@ -961,15 +1020,15 @@ WheelCollider:
   m_WheelDampingRate: 0.25
   m_ForwardFriction:
     m_ExtremumSlip: 0.4
-    m_ExtremumValue: 8.34
+    m_ExtremumValue: 10
     m_AsymptoteSlip: 0.8
-    m_AsymptoteValue: 10.14
+    m_AsymptoteValue: 5
     m_Stiffness: 1
   m_SidewaysFriction:
     m_ExtremumSlip: 0.2
-    m_ExtremumValue: 10.55
+    m_ExtremumValue: 20
     m_AsymptoteSlip: 0.5
-    m_AsymptoteValue: 10.76
+    m_AsymptoteValue: 10
     m_Stiffness: 1
   m_Enabled: 1
 --- !u!146 &146000010194086486
@@ -990,15 +1049,15 @@ WheelCollider:
   m_WheelDampingRate: 0.25
   m_ForwardFriction:
     m_ExtremumSlip: 0.4
-    m_ExtremumValue: 8.34
+    m_ExtremumValue: 10
     m_AsymptoteSlip: 0.8
-    m_AsymptoteValue: 10.14
+    m_AsymptoteValue: 5
     m_Stiffness: 1
   m_SidewaysFriction:
     m_ExtremumSlip: 0.2
-    m_ExtremumValue: 10.55
+    m_ExtremumValue: 20
     m_AsymptoteSlip: 0.5
-    m_AsymptoteValue: 10.76
+    m_AsymptoteValue: 10
     m_Stiffness: 1
   m_Enabled: 1
 --- !u!146 &146000010451434082
@@ -1019,15 +1078,15 @@ WheelCollider:
   m_WheelDampingRate: 0.25
   m_ForwardFriction:
     m_ExtremumSlip: 0.4
-    m_ExtremumValue: 8.34
+    m_ExtremumValue: 10
     m_AsymptoteSlip: 0.8
-    m_AsymptoteValue: 10.14
+    m_AsymptoteValue: 5
     m_Stiffness: 1
   m_SidewaysFriction:
     m_ExtremumSlip: 0.2
-    m_ExtremumValue: 10.55
+    m_ExtremumValue: 20
     m_AsymptoteSlip: 0.5
-    m_AsymptoteValue: 10.76
+    m_AsymptoteValue: 10
     m_Stiffness: 1
   m_Enabled: 1
 --- !u!146 &146000010486055952
@@ -1048,14 +1107,14 @@ WheelCollider:
   m_WheelDampingRate: 0.25
   m_ForwardFriction:
     m_ExtremumSlip: 0.4
-    m_ExtremumValue: 8.34
+    m_ExtremumValue: 10
     m_AsymptoteSlip: 0.8
-    m_AsymptoteValue: 10.14
+    m_AsymptoteValue: 5
     m_Stiffness: 1
   m_SidewaysFriction:
     m_ExtremumSlip: 0.2
-    m_ExtremumValue: 10.55
+    m_ExtremumValue: 20
     m_AsymptoteSlip: 0.5
-    m_AsymptoteValue: 10.76
+    m_AsymptoteValue: 10
     m_Stiffness: 1
   m_Enabled: 1

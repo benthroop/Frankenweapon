@@ -9,6 +9,7 @@ TagManager:
   - Rocket
   - Wood
   - Checkpoint
+  - Ground
   layers:
   - Default
   - TransparentFX

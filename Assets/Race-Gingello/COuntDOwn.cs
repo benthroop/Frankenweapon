@@ -18,7 +18,10 @@ public class COuntDOwn : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-        CDown();
+        if (CD >= 0f)
+        {
+            CDown();
+        }
         if (CD <= 0f)
         {
             Players[0].GetComponent<VehicleGingello>().enabled = true;

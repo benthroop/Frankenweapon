@@ -14,7 +14,12 @@ public class VehicleShea : VehicleBase
     private float maxTorqueStart;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
     public float lap;
+=======
+    private float _originalRotX;
+    private float _originalRotZ;
+>>>>>>> 92eaf9db18ba660c961582c59c1b45165c22f56f
 =======
     private float _originalRotX;
     private float _originalRotZ;
@@ -85,11 +90,14 @@ public class VehicleShea : VehicleBase
         transform.Translate(0, 3, 0);
         transform.rotation = (Quaternion.Euler(new Vector3(_originalRotX, transform.rotation.y, _originalRotZ)));
     }
+<<<<<<< HEAD
 
     public void Lap ()
     {
         lap++;
     }
+=======
+>>>>>>> 92eaf9db18ba660c961582c59c1b45165c22f56f
 
 	public override void BoostStart()
 	{

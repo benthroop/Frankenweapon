@@ -8,6 +8,9 @@ TagManager:
   - Glow
   - Rocket
   - Wood
+  - Checkpoint
+  - StartLine
+  - BoostD
   layers:
   - Default
   - TransparentFX

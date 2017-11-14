@@ -4,4 +4,10 @@
 EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
-  m_Scenes: []
+  m_Scenes:
+  - enabled: 1
+    path: Assets/Race-Gingello/Race-Gingello.unity
+    guid: 4ba5f4fd3b7ae0e4bbf6f26e70db5380
+  - enabled: 1
+    path: Assets/Race-Gingello/Race-GingelloMenu.unity
+    guid: 0a2a91b5126491a4aa8cd8544b931104

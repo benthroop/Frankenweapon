@@ -13,7 +13,9 @@ public class SimpleCar : VehicleBase
 	public float maxTorque;
 	public float maxBrake;
     public float downforce;
-    private Rigidbody myRigidbody; 
+    private Rigidbody myRigidbody;
+    public GameObject ResetPoint;
+    public GameObject OOH; 
 
 	void Start () 
 	{
@@ -146,7 +148,7 @@ public class SimpleCar : VehicleBase
 
 	public override void BoostStart()
 	{
-		//all you
+        Instantiate(OOH, gameObject.transform.position, gameObject.transform.rotation); 
 	}
 
 	public override void BoostStop()
@@ -156,8 +158,11 @@ public class SimpleCar : VehicleBase
 
 	public override void ActionStart()
 	{
-		//all you
-	}
+       gameObject.transform.position = ResetPoint.transform.position;
+       gameObject.transform.rotation = ResetPoint.transform.rotation;
+       gameObject.GetComponent<Rigidbody>().velocity = new Vector3(0, 0, 0);
+       
+    }
 
 	public override void ActionStop()
 	{

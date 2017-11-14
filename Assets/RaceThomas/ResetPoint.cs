@@ -20,7 +20,18 @@ public class ResetPoint : MonoBehaviour {
         if (other.gameObject == RaceManagerThomas.instance.Racer1)
         {
             other.gameObject.transform.position = reset1.transform.position;
-            other.gameObject.transform.rotation = reset1.transform.rotation; 
+            other.gameObject.transform.rotation = reset1.transform.rotation;
+            other.gameObject.GetComponent<Rigidbody>().velocity = new Vector3(0, 0, 0);
+            RaceManagerThomas.instance.Reset1(); 
+        }
+
+        if (other.gameObject == RaceManagerThomas.instance.Racer2)
+        {
+            other.gameObject.transform.position = reset2.transform.position;
+            other.gameObject.transform.position = reset2.transform.position;
+            other.gameObject.GetComponent<Rigidbody>().velocity = new Vector3(0, 0, 0);
+            RaceManagerThomas.instance.Reset2(); 
+            
         }
     }
 }

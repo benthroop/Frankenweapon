@@ -178,7 +178,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 2100000, guid: 976d389bbe5a20a40a22f070f067b07b, type: 2}
+  - {fileID: 2100000, guid: 17d555e370a7d2044aa4e96a3947f96f, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -210,7 +210,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 2100000, guid: 2d65e5a1864791749903b43517739b96, type: 2}
+  - {fileID: 2100000, guid: 4037ea0b5d099cd4182c33cca9bf0e8a, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -338,8 +338,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bed0cd5b98189c5458f9bfa7af989efa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  CurrentCheckpoint1: 0
-  CurrentCheckpoint2: 0
+  isCheckpoint1: 0
+  isCheckpoint2: 0
   Waypoint1: {fileID: 1843281655896334}
   Waypoint2: {fileID: 1167526161673650}
 --- !u!135 &135608771654923642

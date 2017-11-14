@@ -4,4 +4,7 @@
 EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
-  m_Scenes: []
+  m_Scenes:
+  - enabled: 1
+    path: Assets/RaceThomas/RacetrackThomas.unity
+    guid: 733420283a212e942bbd5653485d4eee

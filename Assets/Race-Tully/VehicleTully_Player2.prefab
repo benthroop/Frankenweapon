@@ -811,7 +811,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 59a30d3a31dacbd46bac568054fcc26d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  controlType: 0
+  controlType: 2
 --- !u!146 &146149789895951214
 WheelCollider:
   m_ObjectHideFlags: 1

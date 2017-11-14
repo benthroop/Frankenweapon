@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class StartingSystem : MonoBehaviour {
 	public bool RaceStarted = false;
+    public bool PrepStarted = false;
+    public GameObject StartButton;
 
 	public float TimeCount;
 	public GameObject VisualCore;
@@ -11,40 +13,58 @@ public class StartingSystem : MonoBehaviour {
 	public GameObject Visual2;
 	public GameObject Visual3;
 	public GameObject GoVisual;
-	
-	// Update is called once per frame
-	void Update () {
-		RacingRuleCiano RuleInfo = this.gameObject.GetComponent<RacingRuleCiano> ();
 
-		if (RaceStarted == true) {
-			RuleInfo.RaceOnGoing = true;
-		}
-			
+    // Update is called once per frame
+    void Update()
+    {
+        RacingRuleCiano RuleInfo = this.gameObject.GetComponent<RacingRuleCiano>();
 
-		if (TimeCount >= 3.5) {
-			RaceStarted = true;
-		} else {
-			TimeCount = TimeCount + Time.deltaTime;
-		}
+        if (RaceStarted == true)
+        {
+            RuleInfo.RaceOnGoing = true;
+        }
 
-		if (TimeCount >= 1) {
-			Visual1.SetActive (true);
-		} 
+        if (Input.GetKeyDown(KeyCode.K) && PrepStarted == false)
+        {
+            StartButton.SetActive(false);
+            PrepStarted = true;
+        }
 
-		if (TimeCount >= 2) {
-			Visual2.SetActive (true);
-		} 
+        if (PrepStarted == true)
+        {
+            if (TimeCount >= 3.5)
+            {
+                RaceStarted = true;
+            }
+            else
+            {
+                TimeCount = TimeCount + Time.deltaTime;
+            }
 
-		if (TimeCount >= 3) {
-			Visual3.SetActive (true);
-		} 
+            if (TimeCount >= 1)
+            {
+                Visual1.SetActive(true);
+            }
 
-		if (TimeCount >= 3.25f) {
-			GoVisual.SetActive (true);
-		} 
+            if (TimeCount >= 2)
+            {
+                Visual2.SetActive(true);
+            }
 
-		if (TimeCount >= 3.5f) {
-			VisualCore.SetActive (false);
-		}
-	}
+            if (TimeCount >= 3)
+            {
+                Visual3.SetActive(true);
+            }
+
+            if (TimeCount >= 3.25f)
+            {
+                GoVisual.SetActive(true);
+            }
+
+            if (TimeCount >= 3.5f)
+            {
+                VisualCore.SetActive(false);
+            }
+        }
+    }
 }

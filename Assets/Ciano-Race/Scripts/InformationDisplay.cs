@@ -41,6 +41,7 @@ public class InformationDisplay : MonoBehaviour {
 		if (LapNumberInt >= 5) {
 			CarPoints = CarPoints + 40;
 			transform.position = VictorySpawn.transform.position;
+            CarDetails.RaceCompleted = true;
 			if (CurrentPlace == 3) {
 				RacingDetails.FirstPlaceSet = true;
 			} else if (CurrentPlace == 2) {
@@ -48,6 +49,7 @@ public class InformationDisplay : MonoBehaviour {
 			} else if (CurrentPlace == 1) {
 				RacingDetails.ThirdPlaceSet = true;
 			}
+
 		}
 
 		CarPoints = (LapNumberInt * 100) + (CheckPointPoints);

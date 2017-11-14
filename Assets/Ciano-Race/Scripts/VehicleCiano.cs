@@ -5,6 +5,7 @@ using UnityEngine.Events;
 
 public class VehicleCiano : VehicleBase {
 	public GameObject WorldCore;
+    public bool RaceCompleted;
 
 	[SerializeField] WheelCollider frontRight;
 	[SerializeField] WheelCollider frontLeft;
@@ -112,10 +113,10 @@ public class VehicleCiano : VehicleBase {
                 GetComponent<Rigidbody>().AddForce(-transform.up * DownForce * GetComponent<Rigidbody>().velocity.magnitude);
             }
 	
-			GhostCheck ();
-            NoiseCheck();
         }
-	}
+        GhostCheck();
+        NoiseCheck();
+    }
 
 	void Update () {
 		Drive ();
@@ -130,14 +131,18 @@ public class VehicleCiano : VehicleBase {
 	}
 
     void NoiseCheck() {
-        if (this.gameObject.layer == LayerMask.NameToLayer("CarGroupGhost"))
-        {
-            GhostCarNoise.SetActive(true);
+        RacingRuleCiano RuleInfo = WorldCore.GetComponent<RacingRuleCiano>();
+
+        if (RuleInfo.RaceOnGoing == true && RaceCompleted == false) {
+            if (this.gameObject.layer == LayerMask.NameToLayer("CarGroupGhost")) {
+                GhostCarNoise.SetActive(true);
+                SolidCarNoise.SetActive(false);
+            } else {
+                SolidCarNoise.SetActive(true);
+                GhostCarNoise.SetActive(false);
+            }
+        } else {
             SolidCarNoise.SetActive(false);
-        }
-        else
-        {
-            SolidCarNoise.SetActive(true);
             GhostCarNoise.SetActive(false);
         }
        

@@ -1,9 +1,12 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class RacingRuleCiano : MonoBehaviour {
 	public bool RaceOnGoing = false;
+    public bool RaceOver = false;
+    public GameObject OverText;
 
 	public GameObject InRaceCameraSpot;
 
@@ -52,7 +55,13 @@ public class RacingRuleCiano : MonoBehaviour {
 		} else {
 			GameObject Camera = GameObject.FindGameObjectWithTag ("MainCamera");
 			Camera.transform.position = InRaceCameraSpot.transform.position;
+            RaceOver = true;
 		}
+
+        if (RaceOver == true) {
+            OverText.SetActive(true);
+            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        }
 
 	}
 

@@ -1354,9 +1354,9 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 32fe9e225c3f2d846a5e51ec92bc52c6, type: 3}
-  m_PlayOnAwake: 0
+  m_PlayOnAwake: 1
   m_Volume: 1
-  m_Pitch: 1
+  m_Pitch: 0.5
   Loop: 1
   Mute: 0
   Spatialize: 0
@@ -1434,7 +1434,7 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: a56c08d6493153f4d903005b4f4a6a1e, type: 3}
-  m_PlayOnAwake: 0
+  m_PlayOnAwake: 1
   m_Volume: 1
   m_Pitch: 1
   Loop: 1
@@ -1623,6 +1623,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   WorldCore: {fileID: 0}
+  RaceCompleted: 0
   frontRight: {fileID: 146714590731262360}
   frontLeft: {fileID: 146812229229932514}
   backRight: {fileID: 146925072226989930}

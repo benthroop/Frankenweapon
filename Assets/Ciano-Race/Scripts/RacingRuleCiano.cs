@@ -50,17 +50,18 @@ public class RacingRuleCiano : MonoBehaviour {
 		PlaceCheck ();
 
 		if (FirstPlaceSet == true && SecondPlaceSet == true && ThirdPlaceSet == true) {
+            RaceOver = true;
 			GameObject Camera = GameObject.FindGameObjectWithTag ("MainCamera");
 			Camera.transform.position = RaceResultCameraSpot.transform.position;
 		} else {
 			GameObject Camera = GameObject.FindGameObjectWithTag ("MainCamera");
 			Camera.transform.position = InRaceCameraSpot.transform.position;
-            RaceOver = true;
+            RaceOver = false;
 		}
 
         if (RaceOver == true) {
             OverText.SetActive(true);
-            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+           SceneManager.LoadScene(SceneManager.GetActiveScene().name);
         }
 
 	}

@@ -24,8 +24,22 @@ public class StartingSystem : MonoBehaviour {
             RuleInfo.RaceOnGoing = true;
         }
 
-        if (Input.GetKeyDown(KeyCode.K) && PrepStarted == false)
-        {
+        if (Input.GetKeyDown(KeyCode.Alpha2) && PrepStarted == false) {
+            Destroy(RuleInfo.RacersList[3]);
+            RuleInfo.RacersList.Remove(RuleInfo.RacersList[3]);
+            RuleInfo.ThirdPlaceSet = true;
+            Destroy(RuleInfo.RacersList[2]);
+            RuleInfo.RacersList.Remove(RuleInfo.RacersList[2]);
+            //RuleInfo.SecondPlaceSet = true;
+            StartButton.SetActive(false);
+            PrepStarted = true;
+        } else if (Input.GetKeyDown(KeyCode.Alpha3) && PrepStarted == false) {
+            Destroy(RuleInfo.RacersList[3]);
+            RuleInfo.RacersList.Remove(RuleInfo.RacersList[3]);
+            //RuleInfo.ThirdPlaceSet = true;
+            StartButton.SetActive(false);
+            PrepStarted = true;
+        } else if (Input.GetKeyDown(KeyCode.Alpha4) && PrepStarted == false) {
             StartButton.SetActive(false);
             PrepStarted = true;
         }

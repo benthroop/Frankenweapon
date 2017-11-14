@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using UnityEngine.UI;
 
 [RequireComponent(typeof(Rigidbody))]
 public class VehicleTully: VehicleBase
@@ -12,6 +13,9 @@ public class VehicleTully: VehicleBase
     public float maxSteer;
     public float maxTorque;
     public float downforce;
+    public float lapCheck = 0;
+    public float lap = 0;
+    public Text txt;
 
     private Rigidbody myRigidbody;
 
@@ -28,6 +32,8 @@ public class VehicleTully: VehicleBase
             Debug.LogError("You a Stupid");
         }
     }
+
+    
 
     void Drive()
     {
@@ -58,6 +64,24 @@ public class VehicleTully: VehicleBase
         if (transform.position.x > 29) transform.position = new Vector3(-29, transform.position.y, transform.position.z);
         if (transform.position.z < -29) transform.position = new Vector3(transform.position.x, transform.position.y, 29);
         if (transform.position.z > 29) transform.position = new Vector3(transform.position.x, transform.position.y, -29);
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        lapCheck++;
+        
+        if (lapCheck == 4)
+        {
+            lapCheck = 0;
+            lap++;
+            txt.GetComponent<UnityEngine.UI.Text>().text = lap.ToString();
+
+        }
+
+        if (lap == 3)
+        {
+            txt.GetComponent<UnityEngine.UI.Text>().text = "Wins";
+        }
     }
 
     public void AddDownForce()
@@ -107,11 +131,17 @@ public class VehicleTully: VehicleBase
     public override void BoostStart()
     {
         //all you
+        AudioSource audio = GetComponent<AudioSource>();
+        audio.Play();
+        audio.Play(41000);
     }
 
     public override void BoostStop()
     {
         //all you
+        AudioSource audio = GetComponent<AudioSource>();
+        audio.Stop();
+
     }
 
     public override void ActionStart()

@@ -213,7 +213,7 @@ void OnTriggerEnter(Collider col) {
 
 	public override void ActionStop()
 	{
-        return;
+        //return;
 		if(isFlying == true)
       {
 

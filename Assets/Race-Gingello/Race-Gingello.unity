@@ -26,7 +26,7 @@ RenderSettings:
   m_AmbientIntensity: 1.2
   m_AmbientMode: 0
   m_SubtractiveShadowColor: {r: 0.42, g: 0.478, b: 0.627, a: 1}
-  m_SkyboxMaterial: {fileID: 2100000, guid: b6a3f8bca2c865243929bac258c89b96, type: 2}
+  m_SkyboxMaterial: {fileID: 2100000, guid: 72dd76af69d45604e93fc1e9573c827c, type: 2}
   m_HaloStrength: 0.5
   m_FlareStrength: 1
   m_FlareFadeSpeed: 3
@@ -1349,8 +1349,8 @@ ParticleSystemRenderer:
   m_LightProbeUsage: 0
   m_ReflectionProbeUsage: 0
   m_Materials:
-  - {fileID: 2100000, guid: e097e0ca551c28647a5a126e44c35bbc, type: 2}
-  - {fileID: 2100000, guid: e097e0ca551c28647a5a126e44c35bbc, type: 2}
+  - {fileID: 2100000, guid: 5c9b9df45a70071478c54af5ab1d4c60, type: 2}
+  - {fileID: 2100000, guid: 5c9b9df45a70071478c54af5ab1d4c60, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -1446,7 +1446,7 @@ ParticleSystem:
   moveWithTransform: 0
   moveWithCustomTransform: {fileID: 0}
   scalingMode: 1
-  randomSeed: -2050853400
+  randomSeed: 1579731133
   InitialModule:
     serializedVersion: 3
     enabled: 1
@@ -4747,8 +4747,8 @@ ParticleSystemRenderer:
   m_LightProbeUsage: 0
   m_ReflectionProbeUsage: 0
   m_Materials:
-  - {fileID: 2100000, guid: e097e0ca551c28647a5a126e44c35bbc, type: 2}
-  - {fileID: 2100000, guid: e097e0ca551c28647a5a126e44c35bbc, type: 2}
+  - {fileID: 2100000, guid: 5c9b9df45a70071478c54af5ab1d4c60, type: 2}
+  - {fileID: 2100000, guid: 5c9b9df45a70071478c54af5ab1d4c60, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -4844,7 +4844,7 @@ ParticleSystem:
   moveWithTransform: 0
   moveWithCustomTransform: {fileID: 0}
   scalingMode: 1
-  randomSeed: -425129923
+  randomSeed: -360901900
   InitialModule:
     serializedVersion: 3
     enabled: 1
@@ -8504,7 +8504,7 @@ Mesh:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_Name: pb_Mesh-389384
+  m_Name: pb_Mesh28852
   serializedVersion: 8
   m_SubMeshes:
   - serializedVersion: 2

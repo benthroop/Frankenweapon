@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.018358557, g: 0.01582661, b: 0.04951973, a: 1}
+  m_IndirectSpecularColor: {r: 0, g: 0, b: 0, a: 1}
 --- !u!157 &3
 LightmapSettings:
   m_ObjectHideFlags: 0
@@ -983,8 +983,8 @@ ParticleSystemRenderer:
   m_LightProbeUsage: 0
   m_ReflectionProbeUsage: 0
   m_Materials:
-  - {fileID: 2100000, guid: e097e0ca551c28647a5a126e44c35bbc, type: 2}
-  - {fileID: 2100000, guid: e097e0ca551c28647a5a126e44c35bbc, type: 2}
+  - {fileID: 2100000, guid: 5c9b9df45a70071478c54af5ab1d4c60, type: 2}
+  - {fileID: 2100000, guid: 5c9b9df45a70071478c54af5ab1d4c60, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -1080,7 +1080,7 @@ ParticleSystem:
   moveWithTransform: 0
   moveWithCustomTransform: {fileID: 0}
   scalingMode: 1
-  randomSeed: -452288885
+  randomSeed: 1676334719
   InitialModule:
     serializedVersion: 3
     enabled: 1
@@ -4417,6 +4417,20 @@ Prefab:
       propertyPath: m_Constraints
       value: 14
       objectReference: {fileID: 0}
+    - target: {fileID: 199187763680879510, guid: d849df0ce92e765418c780dd16365013,
+        type: 2}
+      propertyPath: m_Materials.Array.data[1]
+      value: 
+      objectReference: {fileID: 2100000, guid: 5c9b9df45a70071478c54af5ab1d4c60, type: 2}
+    - target: {fileID: 199187763680879510, guid: d849df0ce92e765418c780dd16365013,
+        type: 2}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 5c9b9df45a70071478c54af5ab1d4c60, type: 2}
+    - target: {fileID: 1000012082766304, guid: d849df0ce92e765418c780dd16365013, type: 2}
+      propertyPath: m_Name
+      value: DontAPPLYVehicle-Gingello
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 114585360831609878, guid: d849df0ce92e765418c780dd16365013, type: 2}
     - {fileID: 114212079659227954, guid: d849df0ce92e765418c780dd16365013, type: 2}
@@ -4587,8 +4601,8 @@ ParticleSystemRenderer:
   m_LightProbeUsage: 0
   m_ReflectionProbeUsage: 0
   m_Materials:
-  - {fileID: 2100000, guid: e097e0ca551c28647a5a126e44c35bbc, type: 2}
-  - {fileID: 2100000, guid: e097e0ca551c28647a5a126e44c35bbc, type: 2}
+  - {fileID: 2100000, guid: 5c9b9df45a70071478c54af5ab1d4c60, type: 2}
+  - {fileID: 2100000, guid: 5c9b9df45a70071478c54af5ab1d4c60, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -4684,7 +4698,7 @@ ParticleSystem:
   moveWithTransform: 0
   moveWithCustomTransform: {fileID: 0}
   scalingMode: 1
-  randomSeed: -220704495
+  randomSeed: 1068919728
   InitialModule:
     serializedVersion: 3
     enabled: 1
@@ -10928,6 +10942,20 @@ Prefab:
         type: 2}
       propertyPath: playOnAwake
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 199410803383891070, guid: 5a81587710fab4343b7ee065e69d4a09,
+        type: 2}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 5c9b9df45a70071478c54af5ab1d4c60, type: 2}
+    - target: {fileID: 199410803383891070, guid: 5a81587710fab4343b7ee065e69d4a09,
+        type: 2}
+      propertyPath: m_Materials.Array.data[1]
+      value: 
+      objectReference: {fileID: 2100000, guid: 5c9b9df45a70071478c54af5ab1d4c60, type: 2}
+    - target: {fileID: 1977555952990428, guid: 5a81587710fab4343b7ee065e69d4a09, type: 2}
+      propertyPath: m_Name
+      value: DONTAPPLYVehicle-GingelloBlue
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 114449969628607104, guid: 5a81587710fab4343b7ee065e69d4a09, type: 2}

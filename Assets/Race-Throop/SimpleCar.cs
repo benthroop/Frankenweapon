@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
+[RequireComponent (typeof (Rigidbody))] 
 public class SimpleCar : VehicleBase 
 {
 	[SerializeField] WheelCollider frontRight;
@@ -11,6 +12,8 @@ public class SimpleCar : VehicleBase
 	public float maxSteer;
 	public float maxTorque;
 	public float maxBrake;
+    public float downforce;
+    private Rigidbody myRigidbody; 
 
 	void Start () 
 	{
@@ -19,6 +22,8 @@ public class SimpleCar : VehicleBase
 		frontLeft.ConfigureVehicleSubsteps(5f, 12, 15);
 		backRight.ConfigureVehicleSubsteps(5f, 12, 15);
 		backLeft.ConfigureVehicleSubsteps(5f, 12, 15);
+
+        myRigidbody = GetComponent<Rigidbody>(); 
 	}
 
 	// finds the corresponding visual wheel
@@ -105,7 +110,39 @@ public class SimpleCar : VehicleBase
 	void Update () 
 	{
 		Drive ();
+        if (IsGrounded() == true)
+        {
+            AddDownForce();
+        }
 	}
+
+    private void AddDownForce()
+    {
+        myRigidbody.AddForce(-transform.up * downforce * myRigidbody.velocity.magnitude); 
+    }
+
+    private bool IsGrounded()
+    {
+        WheelHit leftHit;
+        WheelHit rightHit;
+        bool result = false; 
+        
+
+        frontLeft.GetGroundHit(out leftHit);
+        frontRight.GetGroundHit(out rightHit);
+
+        if(frontLeft.GetGroundHit (out leftHit))
+        {
+            result = true; 
+        }
+
+        if (frontRight.GetGroundHit(out rightHit))
+        {
+            result = true; 
+        }
+
+        return result; 
+    }
 
 	public override void BoostStart()
 	{

@@ -1,0 +1,129 @@
+﻿using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class RaceManagerThomas : MonoBehaviour
+{
+    public GameObject Racer1;
+    public GameObject Racer2;
+    public GameObject[] Racer1Checkpoints;
+    public GameObject[] Racer2Checkpoints;
+    GameObject NextCheckpoint1;
+    GameObject NextCheckpoint2; 
+    int Racer1Laps = 0;
+    int Racer2Laps = 0;
+    int Racer1index = 0;
+    int Racer2index = 0;
+    Vector3 Racer1Position;
+    Vector3 Racer2Position;
+    public GameObject player1Text;
+    public GameObject Player2Text; 
+
+
+    public static RaceManagerThomas instance; 
+
+    // Use this for initialization
+    void Start ()
+    {
+        instance = this;
+        NextCheckpoint1 = Racer1Checkpoints[Racer1index];
+        NextCheckpoint1.gameObject.GetComponent<CheckpointScriptThomas>().Racer1Active();
+        NextCheckpoint2 = Racer2Checkpoints[Racer2index];
+        NextCheckpoint2.gameObject.GetComponent<CheckpointScriptThomas>().Racer2Active();
+	}
+	
+	// Update is called once per frame
+	void Update ()
+    {
+        Racer1Position = NextCheckpoint1.transform.position - Racer1.transform.position;
+        Racer2Position = NextCheckpoint2.transform.position - Racer2.transform.position;
+
+       
+            if (Racer1index == Racer2index && Racer1Laps == Racer2Laps)
+            {
+                if (Racer1Position.magnitude < Racer2Position.magnitude)
+                {
+                    Debug.Log("Blu in lead");
+                    player1Text.SetActive(true);
+                    Player2Text.SetActive(false);
+                }
+
+                if (Racer1Position.magnitude > Racer2Position.magnitude)
+                {
+                    Debug.Log("Red in lead");
+                    Player2Text.SetActive(true);
+                    player1Text.SetActive(false);
+                }
+            }
+       
+
+        if (Racer1Laps == Racer2Laps)
+        {
+            if (Racer1index > Racer2index)
+            {
+                Debug.Log("Blu in lead");
+                player1Text.SetActive(true);
+                Player2Text.SetActive(false);
+            }
+
+            if (Racer2index > Racer1index)
+            {
+                Debug.Log("Red in lead");
+                Player2Text.SetActive(true);
+                player1Text.SetActive(false);
+            }
+        }
+
+        if (Racer1Laps > Racer2Laps)
+        {
+            Debug.Log("Blu in lead");
+            player1Text.SetActive(true);
+            Player2Text.SetActive(false);
+        }
+
+        if (Racer2Laps > Racer1Laps)
+        {
+            Debug.Log("Red in lead");
+            Player2Text.SetActive(true);
+            player1Text.SetActive(false);
+        }
+	}
+
+    public void CheckpointHitRacer1 ()
+    {
+        Racer1index++;
+        CheckLapRacer1();
+        NextCheckpoint1 = Racer1Checkpoints[Racer1index];
+        NextCheckpoint1.gameObject.GetComponent<CheckpointScriptThomas>().Racer1Active(); 
+    }
+
+    public void CheckpointHitRacer2 ()
+    {
+        Racer2index++;
+        CheckLapRacer2(); 
+        NextCheckpoint2 = Racer2Checkpoints[Racer2index];
+        NextCheckpoint2.gameObject.GetComponent<CheckpointScriptThomas>().Racer2Active(); 
+    }
+
+    void CheckLapRacer1()
+    {
+        if (Racer1index == Racer1Checkpoints.Length)
+        {
+            Racer1index = 0;
+            Racer1Laps++;
+            Debug.Log("lap racer 1");
+        }
+    }
+
+    void CheckLapRacer2()
+    {
+        if (Racer2index == Racer2Checkpoints.Length)
+        {
+            Racer2index = 0;
+            Racer2Laps++;
+            Debug.Log("lap Racer 2");
+        }
+    }
+
+
+}

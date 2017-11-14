@@ -32,7 +32,14 @@ public class RacingRuleCiano : MonoBehaviour {
 			if (Racer.GetComponent<InformationDisplay> () == null) {
 				Racer.AddComponent<InformationDisplay> ();
 			}
-		}
+
+            if (RacersList.Count == 1) {
+                SecondPlaceSet = true;
+                ThirdPlaceSet = true;
+            } else if (RacersList.Count == 1) {
+                ThirdPlaceSet = true;
+            }
+        }
 	}
 
 	// Update is called once per frame

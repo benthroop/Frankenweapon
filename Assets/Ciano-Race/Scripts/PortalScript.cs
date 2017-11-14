@@ -1,14 +1,12 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class PortalScript : MonoBehaviour {
 
 	public GameObject TeleportSpot;
-
-	void Start () {
-		
-	}
+    public UnityEvent ExitPortal; 
 	
 	// Update is called once per frame
 	void OnTriggerEnter (Collider col) {
@@ -19,7 +17,7 @@ public class PortalScript : MonoBehaviour {
 		}
 
 		if (col.gameObject.GetComponent<InformationDisplay> () != null) {
-			Debug.Log ("LAP");
+            ExitPortal.Invoke();
 
 			InformationDisplay DisplayInfo = col.gameObject.GetComponent<InformationDisplay> ();
 

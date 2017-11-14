@@ -705,7 +705,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1402364749016482}
   m_LocalRotation: {x: 0, y: -0.7071068, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: 25.94, y: -1.6, z: -27.4}
+  m_LocalPosition: {x: 18.61, y: -1.6, z: -27.4}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4697126812733442}
@@ -1353,10 +1353,10 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 32fe9e225c3f2d846a5e51ec92bc52c6, type: 3}
-  m_PlayOnAwake: 0
+  m_PlayOnAwake: 1
   m_Volume: 1
-  m_Pitch: 1
-  Loop: 0
+  m_Pitch: -0.51
+  Loop: 1
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0
@@ -1433,10 +1433,10 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: a56c08d6493153f4d903005b4f4a6a1e, type: 3}
-  m_PlayOnAwake: 0
+  m_PlayOnAwake: 1
   m_Volume: 1
   m_Pitch: 1
-  Loop: 0
+  Loop: 1
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0
@@ -1540,6 +1540,8 @@ MonoBehaviour:
   maxBrake: 5000
   DownForce: 800
   SmokeMaker: {fileID: 1487260825409990}
+  SolidCarNoise: {fileID: 1975951587470482}
+  GhostCarNoise: {fileID: 1122083813300956}
 --- !u!114 &114215743858743714
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1572,9 +1574,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 'Lap #
-
-'
+  m_Text: 0/5
 --- !u!114 &114314062845734850
 MonoBehaviour:
   m_ObjectHideFlags: 1

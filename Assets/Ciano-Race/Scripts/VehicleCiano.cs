@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class VehicleCiano : VehicleBase {
 	public GameObject WorldCore;
@@ -9,7 +10,7 @@ public class VehicleCiano : VehicleBase {
 	[SerializeField] WheelCollider frontLeft;
 	[SerializeField] WheelCollider backRight;
 	[SerializeField] WheelCollider backLeft;
-		
+
 	public float maxSteer;
 	public float BaseTorque;
 	public float TorqueMultiplier;
@@ -19,6 +20,8 @@ public class VehicleCiano : VehicleBase {
 	public float DownForce;
 
 	public GameObject SmokeMaker;
+    public GameObject SolidCarNoise;
+    public GameObject GhostCarNoise;
 
 	void Start () {
 			//this is to keep the wheels from jittering
@@ -36,15 +39,26 @@ public class VehicleCiano : VehicleBase {
 			return;
 		}
 
-		Transform visualWheel = collider.transform.GetChild(0);
-	
-		Vector3 position;
-		Quaternion rotation;
-		collider.GetWorldPose(out position, out rotation);
+        Transform visualWheel = collider.transform.GetChild(0);
+        Transform TurningVisual = visualWheel.transform.GetChild(0);
 
-		visualWheel.transform.position = position;
-		visualWheel.transform.rotation = rotation;
-	}
+        if (this.gameObject.layer != LayerMask.NameToLayer("CarGroupGhost")) {
+           
+            visualWheel.GetComponent<MeshRenderer>().enabled = true;
+            TurningVisual.GetComponent<MeshRenderer>().enabled = true;
+
+        } else {
+            visualWheel.GetComponent<MeshRenderer>().enabled = false;
+            TurningVisual.GetComponent<MeshRenderer>().enabled = false;
+        }
+
+        Vector3 position;
+        Quaternion rotation;
+        collider.GetWorldPose(out position, out rotation);
+
+        visualWheel.transform.position = position;
+        visualWheel.transform.rotation = rotation;
+    }
 
 	void Drive() {
 		RacingRuleCiano RaceRuleDetails = WorldCore.GetComponent<RacingRuleCiano> ();
@@ -89,20 +103,18 @@ public class VehicleCiano : VehicleBase {
 				}
 			}
 
-			//notice that the wheel visuals do NOT turn. You might want to make that work if it's visible to the player.
-			//there's actually a bit about that in the Unity Wheelcollider tutorial: https://docs.unity3d.com/Manual/WheelColliderTutorial.html
-
-			ApplyLocalPositionToVisuals (frontRight);
-			ApplyLocalPositionToVisuals (frontLeft);
-			ApplyLocalPositionToVisuals (backLeft);
-			ApplyLocalPositionToVisuals (backRight);
-
-
-
-			GetComponent<Rigidbody> ().AddForce (-transform.up * DownForce * GetComponent<Rigidbody> ().velocity.magnitude);
+                ApplyLocalPositionToVisuals(frontRight);
+                ApplyLocalPositionToVisuals(frontLeft);
+                ApplyLocalPositionToVisuals(backLeft);
+                ApplyLocalPositionToVisuals(backRight);
+            
+            if (frontLeft.isGrounded == true && frontRight.isGrounded == true) {
+                GetComponent<Rigidbody>().AddForce(-transform.up * DownForce * GetComponent<Rigidbody>().velocity.magnitude);
+            }
 	
 			GhostCheck ();
-		}
+            NoiseCheck();
+        }
 	}
 
 	void Update () {
@@ -117,7 +129,21 @@ public class VehicleCiano : VehicleBase {
 		}
 	}
 
-	public override void BoostStart(){
+    void NoiseCheck() {
+        if (this.gameObject.layer == LayerMask.NameToLayer("CarGroupGhost"))
+        {
+            GhostCarNoise.SetActive(true);
+            SolidCarNoise.SetActive(false);
+        }
+        else
+        {
+            SolidCarNoise.SetActive(true);
+            GhostCarNoise.SetActive(false);
+        }
+       
+    }
+
+    public override void BoostStart(){
 		CurrentTorque = BaseTorque / TorqueMultiplier;
 
 		Debug.Log ("Ghost");
@@ -145,6 +171,8 @@ public class VehicleCiano : VehicleBase {
 	}
 
 	public override void ActionStop(){
-		
-	}
+        InformationDisplay PlaceDetails = GetComponent<InformationDisplay>();
+        transform.position = PlaceDetails.PreviousCheckPoint.transform.position;
+        transform.rotation = PlaceDetails.PreviousCheckPoint.transform.rotation;
+    }
 }
